@@ -88,6 +88,12 @@
 	    <version>9.1-901-1.jdbc4</version>
 	</dependency>
 	
+	<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+	<dependency>
+	    <groupId>javax.xml.bind</groupId>
+	    <artifactId>jaxb-api</artifactId>
+	</dependency>
+	
   </dependencies>
   
   <build>
