@@ -19,7 +19,7 @@ public class Turma {
     @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Column(unique = true, name = "codDisciplina", nullable = true)
+    @Column(name = "codDisciplina", nullable = true)
     private String codDisciplina;
 
     @Column(name = "curso", nullable = false)

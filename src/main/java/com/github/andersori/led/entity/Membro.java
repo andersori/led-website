@@ -10,8 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity(name = "Equipe")
-@Table(name = "equipe")
+@Entity(name = "Membro")
+@Table(name = "membro")
 public class Membro {
 	
 	@Id
@@ -29,7 +29,7 @@ public class Membro {
     @JoinColumn(name = "id_turma", nullable = false)
     private Turma turma;
 
-    @ManyToOne(targetEntity = Equipe.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = Equipe.class, fetch = FetchType.EAGER, optional = true)
     private Equipe equipe;
     
     
