@@ -33,8 +33,13 @@ public class CadastrarSemestre {
 			semestreEntity.setNumSemestre(semestre);
 			
 			try {
-				daoS.add(semestreEntity);
-				model.addAttribute("msg", "Semestre Cadastrado com sucesso.");
+				if(!daoS.semestreJaCadastrado(semestreEntity)) {
+					daoS.add(semestreEntity);
+					model.addAttribute("msg", "Semestre cadastrado com sucesso.");
+				} else {
+					model.addAttribute("msg", "Este Semestre ja esta cadastrado.");
+				}
+				
 			} catch(Exception e) {
 				model.addAttribute("msg", "O semestre '" +ano+"."+semestre+ "' não pode ser cadastrado por motivos desconhecidos.");
 			}

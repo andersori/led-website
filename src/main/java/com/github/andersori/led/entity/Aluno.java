@@ -8,10 +8,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity(name = "Aluno")
 @Table(name = "aluno")
+@NamedQueries(value = {
+	    @NamedQuery(name = "aluno_get_by_equipe", query = "from Aluno a where a.equipe = :equipe"),
+	    @NamedQuery(name = "aluno_get_by_turma", query = "from Aluno a where a.turma = :turma"),
+})
 public class Aluno {
 	
 	@Id
@@ -29,7 +35,8 @@ public class Aluno {
     @JoinColumn(name = "id_turma", nullable = false)
     private Turma turma;
 
-    @ManyToOne(targetEntity = Equipe.class, fetch = FetchType.EAGER, optional = true)
+    @ManyToOne(targetEntity = Equipe.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_equipe", nullable = true)
     private Equipe equipe;
     
     

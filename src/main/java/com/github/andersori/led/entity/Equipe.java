@@ -11,10 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,6 +22,8 @@ import javax.persistence.Table;
 @Table(name = "equipe")
 @NamedQueries(value = {
     @NamedQuery(name = "equipe_get_by_user", query = "from Equipe e where e.usuario = :usuario"),
+    @NamedQuery(name = "equipe_get_by_maratona", query = "from Equipe e where e.maratona = :maratona"),
+    @NamedQuery(name = "equipe_get_by_maratona_casa", query = "from Equipe e where e.maratona = :maratona and e.casa = :casa"),
 })
 public class Equipe {
 	
@@ -34,20 +36,27 @@ public class Equipe {
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_user")
     private Usuario usuario;
 
-    @OneToMany(targetEntity = Aluno.class, fetch = FetchType.EAGER)
+    @ManyToMany(targetEntity = Aluno.class, fetch = FetchType.EAGER)
     @JoinTable(
         name = "aluno_equipe",
-        joinColumns = {@JoinColumn(name = "equipe", referencedColumnName = "id_equipe")},
-        inverseJoinColumns = {@JoinColumn(name = "aluno", referencedColumnName = "id_aluno")}
+        joinColumns = {@JoinColumn(name = "equipe_id", referencedColumnName = "id_equipe")},
+        inverseJoinColumns = {@JoinColumn(name = "aluno_id", referencedColumnName = "id_aluno")}
     )
     private List<Aluno> alunos;
 
     @ManyToOne(targetEntity = Turma.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_turma", nullable = false)
     private Turma turma;
+    
+    @Column(name = "pontos", nullable = true)
+    private Integer pontos;
 
     @Column(name = "casa", nullable = false)
     private Casa casa;
+    
+    @ManyToOne(targetEntity = Maratona.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_maratona", nullable = true)
+    private Maratona maratona;
     
     public Equipe() {
     	
@@ -85,12 +94,28 @@ public class Equipe {
 		this.turma = turma;
 	}
 
+	public Integer getPontos() {
+		return pontos;
+	}
+
+	public void setPontos(Integer pontos) {
+		this.pontos = pontos;
+	}
+
 	public Casa getCasa() {
 		return casa;
 	}
 
 	public void setCasa(Casa casa) {
 		this.casa = casa;
+	}
+
+	public Maratona getMaratona() {
+		return maratona;
+	}
+
+	public void setMaratona(Maratona maratona) {
+		this.maratona = maratona;
 	}
     
 }

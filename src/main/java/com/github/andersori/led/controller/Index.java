@@ -29,11 +29,16 @@ public class Index {
 			if(user.getPermissao() == Permissao.EQUIPE) {
 				EquipeDAO dao = new EquipeHib();
 				
-				model.addAttribute("equipe", dao.get(UsuarioBean.toEntity(user)));
+				model.addAttribute("equipe", dao.get(user.toEntity()));
+				return "index_equipe";
 			}
 		}
-		
-		return "index";
+		return "index_adm";
+	}
+	
+	@RequestMapping(method=RequestMethod.POST)
+	public String postIndex(Model model, HttpServletRequest request) {
+		return getIndex(model, request);
 	}
 	
 	@GetMapping("favicon.ico")

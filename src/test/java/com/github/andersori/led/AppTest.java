@@ -1,20 +1,26 @@
 package com.github.andersori.led;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import org.mindrot.jbcrypt.BCrypt;
 
 import com.github.andersori.led.bean.UsuarioBean;
 import com.github.andersori.led.dao.EquipeDAO;
+import com.github.andersori.led.dao.MaratonaDAO;
 import com.github.andersori.led.dao.SemestreDAO;
 import com.github.andersori.led.dao.AlunoDAO;
 import com.github.andersori.led.dao.TurmaDAO;
 import com.github.andersori.led.dao.UsuarioDAO;
 import com.github.andersori.led.dao.hibernate.EquipeHib;
+import com.github.andersori.led.dao.hibernate.MaratonaHib;
 import com.github.andersori.led.dao.hibernate.SemestreHib;
 import com.github.andersori.led.dao.hibernate.AlunoHib;
 import com.github.andersori.led.dao.hibernate.TurmaHib;
 import com.github.andersori.led.dao.hibernate.UsuarioHib;
 import com.github.andersori.led.entity.Casa;
 import com.github.andersori.led.entity.Equipe;
+import com.github.andersori.led.entity.Maratona;
 import com.github.andersori.led.entity.Aluno;
 import com.github.andersori.led.entity.Permissao;
 import com.github.andersori.led.entity.Semestre;
@@ -24,17 +30,85 @@ import com.github.andersori.led.entity.Usuario;
 public class AppTest{
     
 	public static void main(String[] args) {
-		//usuario();
+		usuario();
 		//aluno();
 		//turma();
 		//equipe();
+		//testeGrande();
+	}
+	
+	public static void testeGrande() {
+		SemestreDAO daoSemestre = new SemestreHib();
+		TurmaDAO daoTurma = new TurmaHib();
+		EquipeDAO daoEquipe = new EquipeHib();
+		AlunoDAO daoAluno = new AlunoHib();
+		MaratonaDAO daoMaratona = new MaratonaHib();
 		
 		Semestre s = new Semestre();
 		s.setAno(2019);
 		s.setNumSemestre(1);
+		daoSemestre.add(s);
 		
-		SemestreDAO dao = new SemestreHib();
-		dao.add(s);
+		Turma t = new Turma();
+		t.setCodDisciplina("RUS0014");
+		t.setCurso("ES");
+		t.setNome("Estrutura de Dados - A1");
+		t.setSemestre(daoSemestre.get(1L));
+		daoTurma.add(t);
+		
+		Usuario u = new Usuario();
+		u.setNome("OMG");
+		u.setUsername("omg");
+		u.setPermissao(Permissao.EQUIPE);
+		u.setSenha(BCrypt.hashpw("1234", BCrypt.gensalt()));
+		Equipe e = new Equipe();
+		e.setCasa(Casa.INDEFINIDO);
+		e.setTurma(daoTurma.get(1L));
+		e.setUsuario(u);
+		daoEquipe.add(e);
+		
+		Usuario u2 = new Usuario();
+		u2.setNome("OMG2");
+		u2.setUsername("omg2");
+		u2.setPermissao(Permissao.EQUIPE);
+		u2.setSenha(BCrypt.hashpw("1234", BCrypt.gensalt()));
+		Equipe e2 = new Equipe();
+		e2.setCasa(Casa.INDEFINIDO);
+		e2.setTurma(daoTurma.get(1L));
+		e2.setUsuario(u2);
+		daoEquipe.add(e2);
+		
+		Maratona ma = new Maratona();
+		ma.setData(LocalDate.now());
+		ma.setSemestre(daoSemestre.get(1L));
+		daoMaratona.add(ma);
+		
+		Aluno a1 = new Aluno();
+		a1.setMatricula("374892");
+		a1.setNome("Temp 1");
+		a1.setTurma(daoTurma.get(1L));
+		a1.setEquipe(daoEquipe.get(1L));
+		
+		daoAluno.add(a1);
+		
+		Aluno a2 = new Aluno();
+		a2.setMatricula("374812");
+		a2.setNome("Temp 2");
+		a2.setTurma(daoTurma.get(1L));
+		a2.setEquipe(daoEquipe.get(1L));
+		
+		daoAluno.add(a2);
+		
+		Equipe temp = daoEquipe.get(2L);
+		List<Aluno> alus = temp.getAlunos();
+		alus.add(daoAluno.get(1L));
+		
+		Equipe temp1 = daoEquipe.get(1L);
+		List<Aluno> alus1 = temp1.getAlunos();
+		alus1.add(daoAluno.get(1L));
+		
+		daoEquipe.update(temp);
+		daoEquipe.update(temp1);
 	}
 	
 	public static void usuario() {
@@ -44,7 +118,7 @@ public class AppTest{
 		u.setSenha(BCrypt.hashpw("1234", BCrypt.gensalt()));
 		u.setPermissao(Permissao.ADM);
 		
-		Usuario uData = UsuarioBean.toEntity(u);
+		Usuario uData = u.toEntity();
 		
 		UsuarioDAO dao = new UsuarioHib();
 		dao.add(uData);

@@ -2,6 +2,7 @@ package com.github.andersori.led.dao;
 
 import java.util.List;
 
+import com.github.andersori.led.entity.Semestre;
 import com.github.andersori.led.entity.Turma;
 
 public interface TurmaDAO {
@@ -16,4 +17,5 @@ public interface TurmaDAO {
 
     public void remove(Turma tur);
     
+    public List<Turma> listTurmaBySemestre(Semestre semestre);
 }

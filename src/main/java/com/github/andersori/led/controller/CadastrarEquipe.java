@@ -61,6 +61,7 @@ public class CadastrarEquipe {
 				model.addAttribute("msg", "Equipe '"+nome+"' cadastrado com sucesso.");
 			
 			} catch(Exception e) {
+				e.printStackTrace();
 				Throwable t = e.getCause();
 			    while ((t != null) && !(t instanceof ConstraintViolationException)) {
 			        t = t.getCause();

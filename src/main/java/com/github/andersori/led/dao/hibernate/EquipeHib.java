@@ -1,5 +1,6 @@
 package com.github.andersori.led.dao.hibernate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.NoResultException;
@@ -11,7 +12,9 @@ import org.hibernate.query.Query;
 import com.github.andersori.led.config.Hibernate;
 import com.github.andersori.led.dao.DAO;
 import com.github.andersori.led.dao.EquipeDAO;
+import com.github.andersori.led.entity.Casa;
 import com.github.andersori.led.entity.Equipe;
+import com.github.andersori.led.entity.Maratona;
 import com.github.andersori.led.entity.Usuario;
 
 public class EquipeHib implements EquipeDAO{
@@ -73,5 +76,50 @@ public class EquipeHib implements EquipeDAO{
         }
         return e;
     }
+
+	@Override
+	public List<Equipe> listByMaratona(Maratona maratona) {
+		Session session = Hibernate.getSessionFactory().openSession();
+        Transaction t = session.beginTransaction();
+        List<Equipe> lis = new ArrayList<Equipe>();
+
+        try {
+            Query<Equipe> qry = session.getNamedQuery("equipe_get_by_maratona");
+            qry.setParameter("maratona", maratona);
+            
+            lis = qry.getResultList();
+            t.commit();
+            
+        } catch (RuntimeException ex) {
+            t.rollback();
+            throw ex;
+        } finally {
+            session.close();
+        }
+        return lis;
+	}
+
+	@Override
+	public List<Equipe> listByMaratonaCasa(Maratona maratona, Casa casa) {
+		Session session = Hibernate.getSessionFactory().openSession();
+        Transaction t = session.beginTransaction();
+        List<Equipe> lis = new ArrayList<Equipe>();
+
+        try {
+            Query<Equipe> qry = session.getNamedQuery("equipe_get_by_maratona_casa");
+            qry.setParameter("maratona", maratona);
+            qry.setParameter("casa", casa);
+            
+            lis = qry.getResultList();
+            t.commit();
+            
+        } catch (RuntimeException ex) {
+            t.rollback();
+            throw ex;
+        } finally {
+            session.close();
+        }
+        return lis;
+	}
 	
 }

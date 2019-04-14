@@ -13,7 +13,9 @@ public class EquipeBean implements Bean<Equipe>{
     private UsuarioBean usuario;
     private List<AlunoBean> alunos;
     private TurmaBean turma;
+    private Integer pontos;
     private Casa casa;
+    private MaratonaBean maratona;
     
     public EquipeBean() {
     	alunos = new ArrayList<>();
@@ -51,6 +53,14 @@ public class EquipeBean implements Bean<Equipe>{
 		this.turma = turma;
 	}
 
+	public Integer getPontos() {
+		return pontos;
+	}
+
+	public void setPontos(Integer pontos) {
+		this.pontos = pontos;
+	}
+
 	public Casa getCasa() {
 		return casa;
 	}
@@ -59,11 +69,20 @@ public class EquipeBean implements Bean<Equipe>{
 		this.casa = casa;
 	}
 
+	public MaratonaBean getMaratona() {
+		return maratona;
+	}
+
+	public void setMaratona(MaratonaBean maratona) {
+		this.maratona = maratona;
+	}
+
 	@Override
 	public void toBean(Equipe entity) {
 		if(entity != null) {
 			setId(entity.getId());
 			setCasa(entity.getCasa());
+			setPontos(entity.getPontos());
 			
 			UsuarioBean usuarioBean = new UsuarioBean();
 			usuarioBean.toBean(entity.getUsuario());
@@ -73,6 +92,10 @@ public class EquipeBean implements Bean<Equipe>{
 			turmaBean.toBean(entity.getTurma());
 			setTurma(turmaBean);
 			
+			MaratonaBean maratonaBean = new MaratonaBean();
+			maratonaBean.toBean(entity.getMaratona());
+			setMaratona(maratonaBean);
+			
 			List<AlunoBean> lis = new ArrayList<>();
 			for(Aluno a : entity.getAlunos()) {
 				AlunoBean alunoBean = new AlunoBean();
@@ -80,9 +103,10 @@ public class EquipeBean implements Bean<Equipe>{
 				lis.add(alunoBean);
 			}
 			setAlunos(lis);			
-		} else {
+		} 
+		/*else {
 			throw new NullPointerException("Entidade Equipe nula na converção para bean.");
-		}
+		}*/
 	}
 
 	@Override
@@ -90,8 +114,10 @@ public class EquipeBean implements Bean<Equipe>{
 		Equipe entity = new Equipe();
 		entity.setCasa(getCasa());
 		entity.setId(getId());
+		entity.setPontos(getPontos());
 		entity.setTurma(getTurma().toEntity());
 		entity.setUsuario(getUsuario().toEntity());
+		entity.setMaratona(getMaratona().toEntity());
 		
 		List<Aluno> lis = new ArrayList<Aluno>();
 		for(AlunoBean a : getAlunos()) {

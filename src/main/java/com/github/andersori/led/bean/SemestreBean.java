@@ -44,9 +44,10 @@ public class SemestreBean implements Bean<Semestre>{
 			setAno(entity.getAno());
 			setId(entity.getId());
 			setNumSemestre(entity.getNumSemestre());
-		} else {
+		} 
+		/*else {
 			throw new NullPointerException("Entidade Semestre nula na converção para bean.");
-		}
+		}*/
 	}
 
 	@Override

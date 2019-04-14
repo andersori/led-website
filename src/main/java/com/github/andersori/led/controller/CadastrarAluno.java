@@ -63,7 +63,7 @@ public class CadastrarAluno {
 		
 		model.addAttribute("alunos", listMembro);
 		model.addAttribute("turmas", listTurma);
-		return "cadastrar_membro";
+		return "cadastrar_aluno";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)

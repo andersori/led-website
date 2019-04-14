@@ -73,22 +73,6 @@ public class UsuarioBean implements Bean<Usuario>{
 		this.token = token;
 	}
 
-	public static Usuario toEntity(UsuarioBean bean) {
-		if(bean != null) {
-			Usuario entity = new Usuario();
-			entity.setId(bean.getId());
-			entity.setNome(bean.getNome());
-			entity.setSenha(bean.getSenha());
-			entity.setToken(bean.getToken());
-			entity.setEmail(bean.getEmail());
-			entity.setPermissao(bean.getPermissao());
-			entity.setUsername(bean.getUsername());
-			return entity;
-		} else {
-			throw new NullPointerException("Entidade Aluno nula na converção para bean.");
-		}
-	}
-
 	@Override
 	public void toBean(Usuario entity) {
 		if(entity != null) {
@@ -99,9 +83,10 @@ public class UsuarioBean implements Bean<Usuario>{
 			setEmail(entity.getEmail());
 			setPermissao(entity.getPermissao());
 			setUsername(entity.getUsername());
-		} else {
+		} 
+		/*else {
 			throw new NullPointerException("Entidade Usuario nula na converção para bean.");
-		}
+		}*/
 	}
 
 	@Override

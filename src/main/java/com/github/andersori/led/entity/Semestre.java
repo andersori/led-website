@@ -5,10 +5,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity(name = "Semestre")
 @Table(name = "semestre")
+@NamedQueries(value = {
+	    @NamedQuery(name = "semestre_ja_existe", query = "select count(s) from Semestre s where s.ano = :ano and s.numSemestre = :numSemestre")
+})
 public class Semestre {
 	
 	@Id

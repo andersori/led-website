@@ -13,6 +13,8 @@ public interface SemestreDAO{
     public void update(Semestre sem);
 
     public List<Semestre> list();
+    
+    public boolean semestreJaCadastrado(Semestre semestre);
 
     public void remove(Semestre sem);
 }

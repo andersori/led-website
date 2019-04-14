@@ -19,7 +19,7 @@
 			<label>*Matricula:</label>
 			<input type="text" name="matriculaAluno" required="required" value="${cod}">
 			
-			<select name="turmaAluno">
+			<select name="turmaAluno" required="required">
 				<c:forEach var="turma" items="${turmas}">
 					<option value="${turma.id}">${turma.nome}::${turma.curso}</option>
 				</c:forEach>

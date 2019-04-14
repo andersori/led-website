@@ -68,9 +68,10 @@ public class AlunoBean implements Bean<Aluno>{
 			TurmaBean turmaBean = new TurmaBean();
 			turmaBean.toBean(entity.getTurma());
 			setTurma(turmaBean);
-		} else {
+		} 
+		/*else {
 			throw new NullPointerException("Entidade Aluno nula na converção para bean.");
-		}
+		}*/
 	}
 
 	@Override

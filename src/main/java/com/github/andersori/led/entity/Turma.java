@@ -8,10 +8,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity(name = "Turma")
 @Table(name = "turma")
+@NamedQueries(value = {
+	    @NamedQuery(name = "get_turma_by_semestre", query = "from Turma t where t.semestre = :semestre")
+})
 public class Turma {
 	
 	@Id

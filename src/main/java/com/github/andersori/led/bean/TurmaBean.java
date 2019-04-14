@@ -68,9 +68,10 @@ public class TurmaBean implements Bean<Turma>{
 			setCurso(entity.getCurso());
 			setNome(entity.getNome());
 			
-		} else {
+		} 
+		/*else {
 			throw new NullPointerException("Entidade Turma nula na converção para bean.");
-		}
+		}*/
 	}
 
 	@Override

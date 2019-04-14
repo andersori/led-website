@@ -25,7 +25,7 @@
 			<label>*Senha:</label>
 			<input type="password" name="senhaEquipe" required="required" value="${senha}">
 			
-			<select name="turmaEquipe">
+			<select name="turmaEquipe" required="required">
 				<c:forEach var="turma" items="${turmas}">
 					<option value="${turma.id}">${turma.nome}::${turma.curso}</option>
 				</c:forEach>
