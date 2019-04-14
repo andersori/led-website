@@ -28,24 +28,28 @@ public class CadastrarTurma {
 	public String getPage(	@RequestParam(name="nomeTurma", required=false) String nome,
 							@RequestParam(name="codTurma", required=false) String cod,
 							@RequestParam(name="cursoTurma", required=false) String curso,
+							@RequestParam(name="semestreTurma", required=false) Long semestre,
 							Model model, HttpServletRequest request) {
 		
 		TurmaDAO dao = new TurmaHib();
 		SemestreDAO daoS = new SemestreHib();
 		
 		if(nome != null && cod != null && curso != null) {
-			TurmaBean bean = new TurmaBean();
-			bean.setCodDisciplina(cod);
-			bean.setCurso(curso);
-			bean.setNome(nome);
+			Turma turmaEntity = new Turma();
+			turmaEntity.setCodDisciplina(cod);
+			turmaEntity.setCurso(curso);
+			turmaEntity.setNome(nome);
+			
+			
+			turmaEntity.setSemestre(daoS.get(semestre));
 			
 			try {
-				dao.add(bean.toEntity());
+				dao.add(turmaEntity);
+				model.addAttribute("msg", "Turma Cadastrada com sucesso.");
 			} catch(Exception e) {
+				e.printStackTrace();
 				model.addAttribute("msg", "A turma '" +nome+ "' não pode ser cadastrada por motivos desconhecidos.");
 			}
-			
-			model.addAttribute("msg", "Turma Cadastrada com sucesso.");
 			
 		}
 		
@@ -72,7 +76,8 @@ public class CadastrarTurma {
 	public String postPage( @RequestParam(name="nomeTurma", required=false) String nome,
 							@RequestParam(name="codTurma", required=false) String cod,
 							@RequestParam(name="cursoTurma", required=false) String curso,
+							@RequestParam(name="semestreTurma", required=false) Long semestre,
 							Model model, HttpServletRequest request) {
-		return getPage(nome, cod, curso, model, request);
+		return getPage(nome, cod, curso, semestre, model, request);
 	}
 }

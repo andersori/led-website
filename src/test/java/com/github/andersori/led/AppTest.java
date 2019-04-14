@@ -4,10 +4,12 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import com.github.andersori.led.bean.UsuarioBean;
 import com.github.andersori.led.dao.EquipeDAO;
+import com.github.andersori.led.dao.SemestreDAO;
 import com.github.andersori.led.dao.AlunoDAO;
 import com.github.andersori.led.dao.TurmaDAO;
 import com.github.andersori.led.dao.UsuarioDAO;
 import com.github.andersori.led.dao.hibernate.EquipeHib;
+import com.github.andersori.led.dao.hibernate.SemestreHib;
 import com.github.andersori.led.dao.hibernate.AlunoHib;
 import com.github.andersori.led.dao.hibernate.TurmaHib;
 import com.github.andersori.led.dao.hibernate.UsuarioHib;
@@ -15,16 +17,24 @@ import com.github.andersori.led.entity.Casa;
 import com.github.andersori.led.entity.Equipe;
 import com.github.andersori.led.entity.Aluno;
 import com.github.andersori.led.entity.Permissao;
+import com.github.andersori.led.entity.Semestre;
 import com.github.andersori.led.entity.Turma;
 import com.github.andersori.led.entity.Usuario;
 
 public class AppTest{
     
 	public static void main(String[] args) {
-		usuario();
+		//usuario();
 		//aluno();
 		//turma();
 		//equipe();
+		
+		Semestre s = new Semestre();
+		s.setAno(2019);
+		s.setNumSemestre(1);
+		
+		SemestreDAO dao = new SemestreHib();
+		dao.add(s);
 	}
 	
 	public static void usuario() {

@@ -34,19 +34,16 @@ public class CadastrarAluno {
 		AlunoDAO daoM = new AlunoHib();
 		
 		if(nome != null && matricula != null && turma != null) {
-			AlunoBean bean = new AlunoBean();
-			bean.setMatricula(matricula);
-			bean.setNome(nome);
-			
-			TurmaBean turmaBean = new TurmaBean();
-			turmaBean.toBean(daoT.get(turma));
-			bean.setTurma(turmaBean);
+			Aluno alunoEntity = new Aluno();
+			alunoEntity.setMatricula(matricula);
+			alunoEntity.setNome(nome);
+			alunoEntity.setTurma(daoT.get(turma));
 			
 			try {
-				daoM.add(bean.toEntity());
-				model.addAttribute("msg", "Aluno '"+bean.getNome()+"' cadastrado com sucesso.");
+				daoM.add(alunoEntity);
+				model.addAttribute("msg", "Aluno '"+nome+"' cadastrado com sucesso.");
 			} catch (Exception e) {
-				model.addAttribute("msg", "Não foi possivel cadastrar o(a) aluno(a) '"+bean.getNome()+"' por motivos misteriosos.");
+				model.addAttribute("msg", "Não foi possivel cadastrar o(a) aluno(a) '"+nome+"' por motivos misteriosos.");
 			}
 		}
 		

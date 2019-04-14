@@ -19,6 +19,7 @@
 				<input type="submit" value="Cadastrar Usuario" onclick="javascript: form.action='${pageContext.request.contextPath}/CadastrarUsuario';">
 				<input type="submit" value="Cadastrar Aluno" onclick="javascript: form.action='${pageContext.request.contextPath}/CadastrarAluno';">
 				<input type="submit" value="Cadastrar Turma" onclick="javascript: form.action='${pageContext.request.contextPath}/CadastrarTurma';">
+				<input type="submit" value="Cadastrar Semestre" onclick="javascript: form.action='${pageContext.request.contextPath}/CadastrarSemestre';">
 			</form>
 			<br>
 			<form method="post" name="editar">

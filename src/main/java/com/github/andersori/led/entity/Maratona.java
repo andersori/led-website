@@ -3,7 +3,6 @@ package com.github.andersori.led.entity;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -25,7 +24,7 @@ public class Maratona {
     @Column(name = "id_maratona")
     private Long id;
 	
-	@ManyToOne(targetEntity = Semestre.class, fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@ManyToOne(targetEntity = Semestre.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_semestre_maratona", nullable = false)
 	private Semestre semestre;
 	

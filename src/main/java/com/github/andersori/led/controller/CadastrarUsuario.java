@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.github.andersori.led.bean.UsuarioBean;
 import com.github.andersori.led.dao.UsuarioDAO;
 import com.github.andersori.led.dao.hibernate.UsuarioHib;
 import com.github.andersori.led.entity.Permissao;
+import com.github.andersori.led.entity.Usuario;
 
 @Controller("cadastrarUsuario")
 @RequestMapping("/CadastrarUsuario")
@@ -27,22 +27,22 @@ public class CadastrarUsuario {
 							Model model, HttpServletRequest request) {
 		
 		if(nome != null && username != null && senha != null) {
-			UsuarioBean bean = new UsuarioBean();
-			bean.setNome(nome);
-			bean.setPermissao(Permissao.ADM);
-			bean.setUsername(username);
-			bean.setSenha(BCrypt.hashpw(senha, BCrypt.gensalt()));
+			Usuario usuarioEntity = new Usuario();
+			usuarioEntity.setNome(nome);
+			usuarioEntity.setPermissao(Permissao.ADM);
+			usuarioEntity.setUsername(username);
+			usuarioEntity.setSenha(BCrypt.hashpw(senha, BCrypt.gensalt()));
 			
 			if(email != null) {
-				bean.setEmail(email);
+				usuarioEntity.setEmail(email);
 			}
 			
 			UsuarioDAO dao = new UsuarioHib();
 			
 			try {
-				dao.add(UsuarioBean.toEntity(bean));
+				dao.add(usuarioEntity);
 				
-				model.addAttribute("msg", "Usuario '"+bean.getNome()+"' cadastrado com sucesso.");
+				model.addAttribute("msg", "Usuario '"+nome+"' cadastrado com sucesso.");
 			
 			} catch(Exception e) {
 				Throwable t = e.getCause();
@@ -50,10 +50,10 @@ public class CadastrarUsuario {
 			        t = t.getCause();
 			    }
 			    if (t instanceof ConstraintViolationException) {
-			    	model.addAttribute("msg", "Não foi possivel cadastrar o usuario '"+bean.getNome()+"'. Username já está em uso.");
+			    	model.addAttribute("msg", "Não foi possivel cadastrar o usuario '"+nome+"'. Username já está em uso.");
 			    }
 			    else {
-			    	model.addAttribute("msg", "Não foi possivel cadastrar o usuario '"+bean.getNome()+"' por motivos misteriosos.");
+			    	model.addAttribute("msg", "Não foi possivel cadastrar o usuario '"+nome+"' por motivos misteriosos.");
 			    }
 			}
 			

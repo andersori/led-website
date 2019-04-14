@@ -1,6 +1,5 @@
 package com.github.andersori.led.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,7 +25,7 @@ public class Turma {
     @Column(name = "codDisciplina", nullable = true)
     private String codDisciplina;
     
-    @ManyToOne(targetEntity = Semestre.class, fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(targetEntity = Semestre.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_semestre_turma", nullable = false)
 	private Semestre semestre;
 

@@ -20,9 +20,16 @@
 			<input type="text" name="codTurma" required="required" value="${cod}">
 			
 			<label>*Curso:</label>
-			<select name="cursoTurma">
+			<select name="cursoTurma" required="required">
 				<option value="ES">Engenharia de Software</option>
 				<option value="CC">Ciência da Computação</option>
+			</select>
+			
+			<label>*Semestre</label>
+			<select name="semestreTurma" required="required">
+				<c:forEach var="semestre" items="${semestres}">
+					<option value="${semestre.id}">${semestre.ano}.${semestre.numSemestre}</option>
+				</c:forEach>
 			</select>
 			
 			<input type="submit" value="Cadastrar">
