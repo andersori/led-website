@@ -11,9 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.github.andersori.led.bean.SemestreBean;
 import com.github.andersori.led.bean.TurmaBean;
+import com.github.andersori.led.dao.SemestreDAO;
 import com.github.andersori.led.dao.TurmaDAO;
+import com.github.andersori.led.dao.hibernate.SemestreHib;
 import com.github.andersori.led.dao.hibernate.TurmaHib;
+import com.github.andersori.led.entity.Semestre;
 import com.github.andersori.led.entity.Turma;
 
 @Controller("cadastrarTurma")
@@ -27,6 +31,7 @@ public class CadastrarTurma {
 							Model model, HttpServletRequest request) {
 		
 		TurmaDAO dao = new TurmaHib();
+		SemestreDAO daoS = new SemestreHib();
 		
 		if(nome != null && cod != null && curso != null) {
 			TurmaBean bean = new TurmaBean();
@@ -44,14 +49,22 @@ public class CadastrarTurma {
 			
 		}
 		
-		List<TurmaBean> list = new ArrayList<>();
+		List<TurmaBean> listTurma = new ArrayList<>();
 		for(Turma t : dao.list()) {
 			TurmaBean turBean = new TurmaBean();
 			turBean.toBean(t);
-			list.add(turBean);
+			listTurma.add(turBean);
 		}
 		
-		model.addAttribute("turmas", list);
+		List<SemestreBean> listSemestre = new ArrayList<SemestreBean>();
+		for(Semestre s : daoS.list()) {
+			SemestreBean sBean = new SemestreBean();
+			sBean.toBean(s);
+			listSemestre.add(sBean);
+		}
+		
+		model.addAttribute("turmas", listTurma);
+		model.addAttribute("semestres", listSemestre);
 		return "cadastrar_turma";
 	}
 	
