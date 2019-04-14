@@ -3,11 +3,12 @@ package com.github.andersori.led.bean;
 
 import com.github.andersori.led.entity.Turma;
 
-public class TurmaBean {
+public class TurmaBean implements Bean<Turma>{
 	
 	private Long id;
     private String nome;
     private String codDisciplina;
+    private SemestreBean semestre;
     private String curso;
     
     public TurmaBean() {
@@ -37,6 +38,14 @@ public class TurmaBean {
 	public void setCodDisciplina(String codDisciplina) {
 		this.codDisciplina = codDisciplina;
 	}
+	
+	public SemestreBean getSemestre() {
+		return semestre;
+	}
+	
+	public void setSemestre(SemestreBean semestre) {
+		this.semestre = semestre;
+	}
 
 	public String getCurso() {
 		return curso;
@@ -46,28 +55,33 @@ public class TurmaBean {
 		this.curso = curso;
 	}
 
-	public static TurmaBean toBean(Turma entity) {
+	@Override
+	public void toBean(Turma entity) {
 		if(entity != null) {
-			TurmaBean bean = new TurmaBean();
-			bean.setId(entity.getId());
-			bean.setCodDisciplina(entity.getCodDisciplina());
-			bean.setCurso(entity.getCurso());
-			bean.setNome(entity.getNome());
-			return bean;
+			setId(entity.getId());
+			setCodDisciplina(entity.getCodDisciplina());
+			
+			SemestreBean semes = new SemestreBean();
+			semes.toBean(entity.getSemestre());
+			
+			setSemestre(semes);
+			setCurso(entity.getCurso());
+			setNome(entity.getNome());
+			
+		} else {
+			throw new NullPointerException("Entidade Turma nula na converção para bean.");
 		}
-		return null;
 	}
 
-	public static Turma toEntity(TurmaBean bean) {
-		if(bean != null) {
-			Turma entity = new Turma();
-			entity.setId(bean.getId());
-			entity.setCodDisciplina(bean.getCodDisciplina());
-			entity.setCurso(bean.getCurso());
-			entity.setNome(bean.getNome());
-			return entity;
-		}
-		return null;
+	@Override
+	public Turma toEntity() {
+		Turma entity = new Turma();
+		entity.setId(getId());
+		entity.setCodDisciplina(getCodDisciplina());
+		entity.setSemestre(getSemestre().toEntity());
+		entity.setCurso(getCurso());
+		entity.setNome(getNome());
+		return entity;
 	}
 	
 }

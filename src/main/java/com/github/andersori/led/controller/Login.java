@@ -38,7 +38,8 @@ public class Login {
 					userBanco.setToken(TokenGenerator.generateToken(username));
 					dao.update(userBanco);
 					
-					UsuarioBean userBean = UsuarioBean.toBean(userBanco);
+					UsuarioBean userBean = new UsuarioBean();
+					userBean.toBean(userBanco);
 					session.setAttribute("usuario", userBean);
 					return "redirect:/";
 				}

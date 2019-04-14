@@ -23,29 +23,39 @@ public class Autenticado implements Filter {
         HttpServletResponse res = (HttpServletResponse) response;	
         HttpSession session = req.getSession();
         
-		System.out.println("Requisitando: " + req.getRequestURI());
-		
-		UsuarioBean user = (UsuarioBean) session.getAttribute("usuario");
-		String loginURI = req.getContextPath() + "/Login";
-		
-		boolean logado = false;
-		boolean loginRequest = req.getRequestURI().equals(loginURI);
-		
-		if(user != null) {
-			Usuario userBanco = new UsuarioHib().get(user.getUsername());
-			if(userBanco != null && user.getToken().equals(userBanco.getToken())) {
-				logado = true;
-			}
-		}
-		
-		if(logado || loginRequest) {
-			chain.doFilter(request, response);
-		}
-		else {
-			session.removeAttribute("usuario");
-			res.sendRedirect(req.getContextPath()+"/Login");
-		}
-		
+        System.out.println("Requisitando: " + req.getRequestURI());
+        
+        if(req.getRequestURI().endsWith(".js") || 
+        		req.getRequestURI().endsWith(".css") || 
+        		req.getRequestURI().endsWith(".ico") || 
+        		req.getRequestURI().endsWith(".jpg")) {
+        	
+        	chain.doFilter(request, response);
+        	
+        } else {
+
+    		
+    		UsuarioBean user = (UsuarioBean) session.getAttribute("usuario");
+    		String loginURI = req.getContextPath() + "/Login";
+    		
+    		boolean logado = false;
+    		boolean loginRequest = req.getRequestURI().equals(loginURI);
+    		
+    		if(user != null) {
+    			Usuario userBanco = new UsuarioHib().get(user.getUsername());
+    			if(userBanco != null && user.getToken().equals(userBanco.getToken())) {
+    				logado = true;
+    			}
+    		}
+    		
+    		if(logado || loginRequest) {
+    			chain.doFilter(request, response);
+    		}
+    		else {
+    			session.removeAttribute("usuario");
+    			res.sendRedirect(req.getContextPath()+"/Login");
+    		}
+        }
 		
 	}
 

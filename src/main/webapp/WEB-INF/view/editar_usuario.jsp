@@ -5,6 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<link rel="shortcut icon" href="resources/img/favicon.ico"/>
 		<title><%=Constante.getAppName()%>::Editar Usuario</title>
 	</head>
 	<body>

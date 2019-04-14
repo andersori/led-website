@@ -5,18 +5,18 @@ import java.util.List;
 
 import com.github.andersori.led.entity.Casa;
 import com.github.andersori.led.entity.Equipe;
-import com.github.andersori.led.entity.Membro;
+import com.github.andersori.led.entity.Aluno;
 
-public class EquipeBean {
+public class EquipeBean implements Bean<Equipe>{
 
     private Long id;
     private UsuarioBean usuario;
-    private List<MembroBean> membros;
+    private List<AlunoBean> alunos;
     private TurmaBean turma;
     private Casa casa;
     
     public EquipeBean() {
-    	
+    	alunos = new ArrayList<>();
     }
 
 	public Long getId() {
@@ -35,12 +35,12 @@ public class EquipeBean {
 		this.usuario = usuario;
 	}
 
-	public List<MembroBean> getMembros() {
-		return membros;
+	public List<AlunoBean> getAlunos() {
+		return alunos;
 	}
 
-	public void setMembros(List<MembroBean> membros) {
-		this.membros = membros;
+	public void setAlunos(List<AlunoBean> alunos) {
+		this.alunos = alunos;
 	}
 
 	public TurmaBean getTurma() {
@@ -59,42 +59,46 @@ public class EquipeBean {
 		this.casa = casa;
 	}
 
-	public static EquipeBean toBean(Equipe entity) {
+	@Override
+	public void toBean(Equipe entity) {
 		if(entity != null) {
-			EquipeBean bean = new EquipeBean();
-			bean.setId(entity.getId());
-			bean.setCasa(entity.getCasa());
+			setId(entity.getId());
+			setCasa(entity.getCasa());
 			
-			bean.setUsuario(UsuarioBean.toBean(entity.getUsuario()));
-			bean.setTurma(TurmaBean.toBean(entity.getTurma()));
-			List<MembroBean> lis = new ArrayList<>();
-			for(Membro m : entity.getMembros()) {
-				lis.add(MembroBean.toBean(m));
+			UsuarioBean usuarioBean = new UsuarioBean();
+			usuarioBean.toBean(entity.getUsuario());
+			setUsuario(usuarioBean);
+			
+			TurmaBean turmaBean = new TurmaBean();
+			turmaBean.toBean(entity.getTurma());
+			setTurma(turmaBean);
+			
+			List<AlunoBean> lis = new ArrayList<>();
+			for(Aluno a : entity.getAlunos()) {
+				AlunoBean alunoBean = new AlunoBean();
+				alunoBean.toBean(a);
+				lis.add(alunoBean);
 			}
-			bean.setMembros(lis);
-			
-			return bean;
+			setAlunos(lis);			
+		} else {
+			throw new NullPointerException("Entidade Equipe nula na converção para bean.");
 		}
-		return null;
 	}
 
-	public static Equipe toEntity(EquipeBean bean) {
-		if(bean != null) {
-			Equipe entity = new Equipe();
-			entity.setId(bean.getId());
-			entity.setCasa(entity.getCasa());
-			
-			entity.setUsuario(UsuarioBean.toEntity(bean.getUsuario()));
-			entity.setTurma(TurmaBean.toEntity(bean.getTurma()));
-			List<Membro> lis = new ArrayList<>();
-			for(MembroBean m : bean.getMembros()) {
-				lis.add(MembroBean.toEntity(m));
-			}
-			entity.setMembros(lis);
-			
-			return entity;
+	@Override
+	public Equipe toEntity() {
+		Equipe entity = new Equipe();
+		entity.setCasa(getCasa());
+		entity.setId(getId());
+		entity.setTurma(getTurma().toEntity());
+		entity.setUsuario(getUsuario().toEntity());
+		
+		List<Aluno> lis = new ArrayList<Aluno>();
+		for(AlunoBean a : getAlunos()) {
+			lis.add(a.toEntity());
 		}
-		return null;
+		entity.setAlunos(lis);
+		return entity;
 	}
     	
 }

@@ -12,6 +12,7 @@ import com.github.andersori.led.config.Hibernate;
 import com.github.andersori.led.dao.DAO;
 import com.github.andersori.led.dao.EquipeDAO;
 import com.github.andersori.led.entity.Equipe;
+import com.github.andersori.led.entity.Usuario;
 
 public class EquipeHib implements EquipeDAO{
 
@@ -47,19 +48,19 @@ public class EquipeHib implements EquipeDAO{
     }
 
     @Override
-    public Equipe get(String nome) {
+    public Equipe get(Usuario user) {
         Session session = Hibernate.getSessionFactory().openSession();
         Transaction t = session.beginTransaction();
         Equipe e = null;
 
         try {
-            Query<Equipe> qry = session.getNamedQuery("equipe_get_by_nome");
-            qry.setParameter("nome", nome);
+            Query<Equipe> qry = session.getNamedQuery("equipe_get_by_user");
+            qry.setParameter("usuario", user);
 
             try {
             	e = (Equipe) qry.getSingleResult();
             } catch(NoResultException ex) {
-            	System.err.println("Nenhuma equipe cadastrada com o nome: '" + nome + "'.");
+            	System.err.println("O usuario " + user.getNome() +" não possui equipe vinculada a ele.");
             }
             
             t.commit();
@@ -71,34 +72,6 @@ public class EquipeHib implements EquipeDAO{
             session.close();
         }
         return e;
-    }
-
-    @Override
-    public boolean validar(String username, String senha) {
-        Session session = Hibernate.getSessionFactory().openSession();
-        Transaction t = session.beginTransaction();
-        long cont = 0;
-
-        try {
-            Query<Long> qry = session.getNamedQuery("equipe_validar");
-            qry.setParameter("nome", username);
-            qry.setParameter("senha", senha);
-
-            cont = ((Long) qry.getSingleResult()).intValue();
-            t.commit();
-            
-        } catch (RuntimeException e) {
-            t.rollback();
-            throw e;
-        } finally {
-            session.close();
-        }
-
-        if(cont >= 1){
-            return true;
-        } else {
-            return false;
-        }
     }
 	
 }

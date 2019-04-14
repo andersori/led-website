@@ -5,6 +5,8 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<link rel="stylesheet" href="resources/css/style.css" rel="text/css" />
+		<link rel="shortcut icon" href="resources/img/favicon.ico"/>
 		<title><%=Constante.getAppName()%>::Login</title>
 	</head>
 	<body>

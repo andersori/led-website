@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.github.andersori.led.entity.Equipe;
-import com.github.andersori.led.entity.Membro;
+import com.github.andersori.led.entity.Maratona;
+import com.github.andersori.led.entity.Semestre;
+import com.github.andersori.led.entity.Aluno;
 import com.github.andersori.led.entity.Turma;
 import com.github.andersori.led.entity.Usuario;
 
@@ -49,7 +51,7 @@ public class Hibernate{
             settings.put(Environment.USER, db.getUser());
             settings.put(Environment.PASS, db.getPassword());
             settings.put(Environment.DIALECT, db.getDialect());
-            settings.put(Environment.SHOW_SQL, "true");
+            //settings.put(Environment.SHOW_SQL, "true");
             settings.put(Environment.POOL_SIZE, "10");
             //settings.put(Environment.HBM2DDL_AUTO, "create-drop");
             settings.put(Environment.NON_CONTEXTUAL_LOB_CREATION, "true");
@@ -61,8 +63,10 @@ public class Hibernate{
             MetadataSources sources = new MetadataSources(registry)
                                             .addAnnotatedClass(Usuario.class)
                                             .addAnnotatedClass(Equipe.class)
-                                            .addAnnotatedClass(Membro.class)
-                                            .addAnnotatedClass(Turma.class);
+                                            .addAnnotatedClass(Aluno.class)
+                                            .addAnnotatedClass(Turma.class)
+                                            .addAnnotatedClass(Semestre.class)
+                                            .addAnnotatedClass(Maratona.class);
                                             
             Metadata metadata = sources.getMetadataBuilder().build();
 

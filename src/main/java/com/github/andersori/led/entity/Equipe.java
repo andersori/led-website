@@ -2,6 +2,7 @@ package com.github.andersori.led.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,12 +12,17 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity(name = "Equipe")
 @Table(name = "equipe")
+@NamedQueries(value = {
+    @NamedQuery(name = "equipe_get_by_user", query = "from Equipe e where e.usuario = :usuario"),
+})
 public class Equipe {
 	
 	@Id
@@ -24,17 +30,17 @@ public class Equipe {
     @Column(name = "id_equipe")
     private Long id;
 
-    @OneToOne(targetEntity = Usuario.class, fetch = FetchType.EAGER)
+    @OneToOne(targetEntity = Usuario.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_user")
     private Usuario usuario;
 
-    @OneToMany(targetEntity = Membro.class, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = Aluno.class, fetch = FetchType.EAGER)
     @JoinTable(
-        name = "membro_equipe",
-        joinColumns = {@JoinColumn(name = "team", referencedColumnName = "id_equipe")},
-        inverseJoinColumns = {@JoinColumn(name = "membro", referencedColumnName = "id_membro")}
+        name = "aluno_equipe",
+        joinColumns = {@JoinColumn(name = "equipe", referencedColumnName = "id_equipe")},
+        inverseJoinColumns = {@JoinColumn(name = "aluno", referencedColumnName = "id_aluno")}
     )
-    private List<Membro> membros;
+    private List<Aluno> alunos;
 
     @ManyToOne(targetEntity = Turma.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_turma", nullable = false)
@@ -63,12 +69,12 @@ public class Equipe {
 		this.usuario = usuario;
 	}
 
-	public List<Membro> getMembros() {
-		return membros;
+	public List<Aluno> getAlunos() {
+		return alunos;
 	}
 
-	public void setMembros(List<Membro> membros) {
-		this.membros = membros;
+	public void setAlunos(List<Aluno> alunos) {
+		this.alunos = alunos;
 	}
 
 	public Turma getTurma() {

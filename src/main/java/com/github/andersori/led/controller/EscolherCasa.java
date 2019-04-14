@@ -7,13 +7,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@Controller("cadastrarMembro")
-@RequestMapping("/CadastrarMembro")
-public class CadastrarMembro {
+@Controller("escolherCasa")
+@RequestMapping("/EscolherCasa")
+public class EscolherCasa {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getPage(Model model, HttpServletRequest request) {
-		return "cadastrar_membro";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)

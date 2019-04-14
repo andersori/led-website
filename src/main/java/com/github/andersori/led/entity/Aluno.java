@@ -10,19 +10,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity(name = "Membro")
-@Table(name = "membro")
-public class Membro {
+@Entity(name = "Aluno")
+@Table(name = "aluno")
+public class Aluno {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_membro")
+    @Column(name = "id_aluno")
     private Long id;
 
     @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Column(unique = true, name = "matricula", nullable = true)
+    @Column(unique = true, name = "matricula", nullable = false)
     private String matricula;
 
     @ManyToOne(targetEntity = Turma.class, fetch = FetchType.EAGER)
@@ -33,7 +33,7 @@ public class Membro {
     private Equipe equipe;
     
     
-    public Membro() {
+    public Aluno() {
     	
     }
 

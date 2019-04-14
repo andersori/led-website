@@ -4,16 +4,16 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import com.github.andersori.led.bean.UsuarioBean;
 import com.github.andersori.led.dao.EquipeDAO;
-import com.github.andersori.led.dao.MembroDAO;
+import com.github.andersori.led.dao.AlunoDAO;
 import com.github.andersori.led.dao.TurmaDAO;
 import com.github.andersori.led.dao.UsuarioDAO;
 import com.github.andersori.led.dao.hibernate.EquipeHib;
-import com.github.andersori.led.dao.hibernate.MembroHib;
+import com.github.andersori.led.dao.hibernate.AlunoHib;
 import com.github.andersori.led.dao.hibernate.TurmaHib;
 import com.github.andersori.led.dao.hibernate.UsuarioHib;
 import com.github.andersori.led.entity.Casa;
 import com.github.andersori.led.entity.Equipe;
-import com.github.andersori.led.entity.Membro;
+import com.github.andersori.led.entity.Aluno;
 import com.github.andersori.led.entity.Permissao;
 import com.github.andersori.led.entity.Turma;
 import com.github.andersori.led.entity.Usuario;
@@ -22,15 +22,15 @@ public class AppTest{
     
 	public static void main(String[] args) {
 		usuario();
-		//membro();
+		//aluno();
 		//turma();
 		//equipe();
 	}
 	
 	public static void usuario() {
 		UsuarioBean u = new UsuarioBean();
-		u.setNome("Usuario da silva");
-		u.setUsername("user");
+		u.setNome("Anderson Soriano");
+		u.setUsername("andersori");
 		u.setSenha(BCrypt.hashpw("1234", BCrypt.gensalt()));
 		u.setPermissao(Permissao.ADM);
 		
@@ -43,9 +43,9 @@ public class AppTest{
 		System.out.println(dao.get("user").getNome());
 	}
 	
-	public static void membro() {
+	public static void aluno() {
 		TurmaDAO daoT = new TurmaHib();
-		MembroDAO daoM = new MembroHib();
+		AlunoDAO daoM = new AlunoHib();
 		
 		Turma t = new Turma();
 		t.setCodDisciplina("3212d");
@@ -54,14 +54,14 @@ public class AppTest{
 		
 		daoT.add(t);
 		
-		Membro m = new Membro();
+		Aluno m = new Aluno();
 		m.setNome("Teste silva");
 		m.setMatricula("423122");
 		m.setTurma(t);
 		
 		daoM.add(m);
 		
-		for(Membro mm : daoM.list()) {
+		for(Aluno mm : daoM.list()) {
 			System.out.println(mm.getNome()+"::"+mm.getTurma().getNome()+"::"+mm.getTurma().getCurso());
 		}
 	}
@@ -92,7 +92,7 @@ public class AppTest{
 		UsuarioDAO daoU = new UsuarioHib();
 		EquipeDAO daoE = new EquipeHib();
 		TurmaDAO daoT = new TurmaHib();
-		MembroDAO daoM = new MembroHib();
+		AlunoDAO daoM = new AlunoHib();
 		
 		Usuario u = new Usuario();
 		u.setNome("SOS");
@@ -113,12 +113,12 @@ public class AppTest{
 		e.setUsuario(u);
 		daoE.add(e);
 		
-		Membro m1 = new Membro();
+		Aluno m1 = new Aluno();
 		m1.setNome("Teste silva");
 		m1.setMatricula("212131");
 		m1.setTurma(t);
 		
-		Membro m2 = new Membro();
+		Aluno m2 = new Aluno();
 		m2.setNome("Teste araujo");
 		m2.setMatricula("423122");
 		m2.setTurma(t);

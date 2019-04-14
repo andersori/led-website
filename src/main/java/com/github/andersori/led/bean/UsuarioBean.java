@@ -3,7 +3,7 @@ package com.github.andersori.led.bean;
 import com.github.andersori.led.entity.Permissao;
 import com.github.andersori.led.entity.Usuario;
 
-public class UsuarioBean {
+public class UsuarioBean implements Bean<Usuario>{
 	
 	private Long id;
     private String username;
@@ -73,21 +73,6 @@ public class UsuarioBean {
 		this.token = token;
 	}
 
-	public static UsuarioBean toBean(Usuario entity) {
-		if(entity != null) {
-			UsuarioBean bean = new UsuarioBean();
-			bean.setId(entity.getId());
-			bean.setNome(entity.getNome());
-			bean.setSenha(entity.getSenha());
-			bean.setToken(entity.getToken());
-			bean.setEmail(entity.getEmail());
-			bean.setPermissao(entity.getPermissao());
-			bean.setUsername(entity.getUsername());
-			return bean;
-		}
-		return null;
-	}
-
 	public static Usuario toEntity(UsuarioBean bean) {
 		if(bean != null) {
 			Usuario entity = new Usuario();
@@ -99,7 +84,36 @@ public class UsuarioBean {
 			entity.setPermissao(bean.getPermissao());
 			entity.setUsername(bean.getUsername());
 			return entity;
+		} else {
+			throw new NullPointerException("Entidade Aluno nula na converção para bean.");
 		}
-		return null;
+	}
+
+	@Override
+	public void toBean(Usuario entity) {
+		if(entity != null) {
+			setId(entity.getId());
+			setNome(entity.getNome());
+			setSenha(entity.getSenha());
+			setToken(entity.getToken());
+			setEmail(entity.getEmail());
+			setPermissao(entity.getPermissao());
+			setUsername(entity.getUsername());
+		} else {
+			throw new NullPointerException("Entidade Usuario nula na converção para bean.");
+		}
+	}
+
+	@Override
+	public Usuario toEntity() {
+		Usuario entity = new Usuario();
+		entity.setId(getId());
+		entity.setNome(getNome());
+		entity.setSenha(getSenha());
+		entity.setToken(getToken());
+		entity.setEmail(getEmail());
+		entity.setPermissao(getPermissao());
+		entity.setUsername(getUsername());
+		return entity;
 	}
 }
