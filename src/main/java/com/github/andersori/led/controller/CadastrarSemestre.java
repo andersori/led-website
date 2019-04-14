@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.andersori.led.bean.SemestreBean;
+import com.github.andersori.led.bean.UsuarioBean;
 import com.github.andersori.led.dao.SemestreDAO;
 import com.github.andersori.led.dao.hibernate.SemestreHib;
+import com.github.andersori.led.entity.Permissao;
 import com.github.andersori.led.entity.Semestre;
 
 @Controller("cadastrarSemestre")
@@ -25,37 +28,45 @@ public class CadastrarSemestre {
 							@RequestParam(name="numSemestre", required=false) Integer semestre,
 							Model model, HttpServletRequest request) {
 		
-		SemestreDAO daoS = new SemestreHib();
+		HttpSession session = request.getSession();
+		UsuarioBean user = (UsuarioBean) session.getAttribute("usuario");
 		
-		if(ano != null && semestre != null) {
-			Semestre semestreEntity = new Semestre();
-			semestreEntity.setAno(ano);
-			semestreEntity.setNumSemestre(semestre);
+		if(user.getPermissao() == Permissao.ADM) {
+			SemestreDAO daoS = new SemestreHib();
 			
-			try {
-				if(!daoS.semestreJaCadastrado(semestreEntity)) {
-					daoS.add(semestreEntity);
-					model.addAttribute("msg", "Semestre cadastrado com sucesso.");
-				} else {
-					model.addAttribute("msg", "Este Semestre ja esta cadastrado.");
+			if(ano != null && semestre != null) {
+				Semestre semestreEntity = new Semestre();
+				semestreEntity.setAno(ano);
+				semestreEntity.setNumSemestre(semestre);
+				
+				try {
+					if(!daoS.semestreJaCadastrado(semestreEntity)) {
+						daoS.add(semestreEntity);
+						model.addAttribute("msg", "Semestre cadastrado com sucesso.");
+					} else {
+						model.addAttribute("msg", "Este Semestre ja esta cadastrado.");
+					}
+					
+				} catch(Exception e) {
+					model.addAttribute("msg", "O semestre '" +ano+"."+semestre+ "' não pode ser cadastrado por motivos desconhecidos.");
 				}
 				
-			} catch(Exception e) {
-				model.addAttribute("msg", "O semestre '" +ano+"."+semestre+ "' não pode ser cadastrado por motivos desconhecidos.");
+				
 			}
 			
+			List<SemestreBean> listSemestre = new ArrayList<SemestreBean>();
+			for(Semestre s : daoS.list()) {
+				SemestreBean beanSemestre = new SemestreBean();
+				beanSemestre.toBean(s);
+				listSemestre.add(beanSemestre);
+			}
 			
+			model.addAttribute("semestres", listSemestre);
+			return "cadastrar_semestre";
+		} else {
+			return "redirect:/";
 		}
 		
-		List<SemestreBean> listSemestre = new ArrayList<SemestreBean>();
-		for(Semestre s : daoS.list()) {
-			SemestreBean beanSemestre = new SemestreBean();
-			beanSemestre.toBean(s);
-			listSemestre.add(beanSemestre);
-		}
-		
-		model.addAttribute("semestres", listSemestre);
-		return "cadastrar_semestre";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)

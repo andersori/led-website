@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.andersori.led.bean.SemestreBean;
 import com.github.andersori.led.bean.TurmaBean;
+import com.github.andersori.led.bean.UsuarioBean;
 import com.github.andersori.led.dao.SemestreDAO;
 import com.github.andersori.led.dao.TurmaDAO;
 import com.github.andersori.led.dao.hibernate.SemestreHib;
 import com.github.andersori.led.dao.hibernate.TurmaHib;
+import com.github.andersori.led.entity.Permissao;
 import com.github.andersori.led.entity.Semestre;
 import com.github.andersori.led.entity.Turma;
 
@@ -31,45 +34,53 @@ public class CadastrarTurma {
 							@RequestParam(name="semestreTurma", required=false) Long semestre,
 							Model model, HttpServletRequest request) {
 		
-		TurmaDAO dao = new TurmaHib();
-		SemestreDAO daoS = new SemestreHib();
+		HttpSession session = request.getSession();
+		UsuarioBean user = (UsuarioBean) session.getAttribute("usuario");
 		
-		if(nome != null && cod != null && curso != null) {
-			Turma turmaEntity = new Turma();
-			turmaEntity.setCodDisciplina(cod);
-			turmaEntity.setCurso(curso);
-			turmaEntity.setNome(nome);
+		if(user.getPermissao() == Permissao.ADM) {
+			TurmaDAO dao = new TurmaHib();
+			SemestreDAO daoS = new SemestreHib();
 			
-			
-			turmaEntity.setSemestre(daoS.get(semestre));
-			
-			try {
-				dao.add(turmaEntity);
-				model.addAttribute("msg", "Turma Cadastrada com sucesso.");
-			} catch(Exception e) {
-				e.printStackTrace();
-				model.addAttribute("msg", "A turma '" +nome+ "' não pode ser cadastrada por motivos desconhecidos.");
+			if(nome != null && cod != null && curso != null) {
+				Turma turmaEntity = new Turma();
+				turmaEntity.setCodDisciplina(cod);
+				turmaEntity.setCurso(curso);
+				turmaEntity.setNome(nome);
+				
+				
+				turmaEntity.setSemestre(daoS.get(semestre));
+				
+				try {
+					dao.add(turmaEntity);
+					model.addAttribute("msg", "Turma Cadastrada com sucesso.");
+				} catch(Exception e) {
+					e.printStackTrace();
+					model.addAttribute("msg", "A turma '" +nome+ "' não pode ser cadastrada por motivos desconhecidos.");
+				}
+				
 			}
 			
+			List<TurmaBean> listTurma = new ArrayList<>();
+			for(Turma t : dao.list()) {
+				TurmaBean turBean = new TurmaBean();
+				turBean.toBean(t);
+				listTurma.add(turBean);
+			}
+			
+			List<SemestreBean> listSemestre = new ArrayList<SemestreBean>();
+			for(Semestre s : daoS.list()) {
+				SemestreBean sBean = new SemestreBean();
+				sBean.toBean(s);
+				listSemestre.add(sBean);
+			}
+			
+			model.addAttribute("turmas", listTurma);
+			model.addAttribute("semestres", listSemestre);
+			return "cadastrar_turma";
+		} else {
+			return "redirect:/";
 		}
 		
-		List<TurmaBean> listTurma = new ArrayList<>();
-		for(Turma t : dao.list()) {
-			TurmaBean turBean = new TurmaBean();
-			turBean.toBean(t);
-			listTurma.add(turBean);
-		}
-		
-		List<SemestreBean> listSemestre = new ArrayList<SemestreBean>();
-		for(Semestre s : daoS.list()) {
-			SemestreBean sBean = new SemestreBean();
-			sBean.toBean(s);
-			listSemestre.add(sBean);
-		}
-		
-		model.addAttribute("turmas", listTurma);
-		model.addAttribute("semestres", listSemestre);
-		return "cadastrar_turma";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
