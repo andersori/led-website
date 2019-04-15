@@ -5,15 +5,15 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" href="resources/css/style.css" rel="text/css" />
-		<link rel="shortcut icon" href="resources/img/favicon.ico"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" rel="text/css" />
+		<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico"/>
 		<title><%=Constante.getAppName()%>::Login</title>
 	</head>
 	<body>
 		<c:if test="${not empty msg}">
 			${msg}
 		</c:if>
-		<form method="post" action="${pageContext.request.contextPath}/Login">
+		<form method="post" action="${pageContext.request.contextPath}/login">
 			<input type="text" placeholder="username" name="username" required="required">
 			<input type="password" placeholder="******" name="senha" required="required">
 			<input type="submit" value="Entrar">

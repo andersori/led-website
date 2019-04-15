@@ -17,7 +17,7 @@ import com.github.andersori.led.entity.Usuario;
 import com.github.andersori.led.util.TokenGenerator;
 
 @Controller("login")
-@RequestMapping("/Login")
+@RequestMapping("/login")
 public class Login {
 	
 	@RequestMapping(method=RequestMethod.GET)

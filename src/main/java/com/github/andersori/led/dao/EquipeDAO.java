@@ -15,6 +15,8 @@ public interface EquipeDAO {
     
     public List<Equipe> listByMaratona(Maratona maratona);
     
+    public List<Equipe> listByCasa(Casa casa);
+    
     public List<Equipe> listByMaratonaCasa(Maratona maratona, Casa casa);
 
     public void add(Equipe eq);

@@ -17,7 +17,7 @@ import com.github.andersori.led.entity.Equipe;
 import com.github.andersori.led.util.CasaSeletor;
 
 @Controller("escolherCasa")
-@RequestMapping("/EscolherCasa")
+@RequestMapping("/escolherCasa")
 public class EscolherCasa {
 	
 	@RequestMapping(value = "/{equipeId}", method=RequestMethod.GET)

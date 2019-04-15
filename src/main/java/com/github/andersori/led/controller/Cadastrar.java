@@ -42,10 +42,10 @@ import com.github.andersori.led.entity.Turma;
 import com.github.andersori.led.entity.Usuario;
 
 @Controller("cadastrar")
-@RequestMapping("/Cadastrar")
+@RequestMapping("/cadastrar")
 public class Cadastrar {
 	
-	@RequestMapping(value = "/Aluno", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/aluno", method = {RequestMethod.GET, RequestMethod.POST})
 	public String aluno(@RequestParam(name="nomeAluno", required=false) String nome,
 						@RequestParam(name="matriculaAluno", required=false) String matricula,
 						@RequestParam(name="turmaAluno", required=false) Long turma,
@@ -96,7 +96,7 @@ public class Cadastrar {
 		
 	}
 	
-	@RequestMapping(value = "/Equipe", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/equipe", method = {RequestMethod.GET, RequestMethod.POST})
 	public String equipe(	@RequestParam(name="nomeEquipe", required=false) String nome,
 							@RequestParam(name="emailEquipe", required=false) String email,
 							@RequestParam(name="usernameEquipe", required=false) String username,
@@ -168,7 +168,7 @@ public class Cadastrar {
 		
 	}
 	
-	@RequestMapping(value = "/Maratona", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/maratona", method = {RequestMethod.GET, RequestMethod.POST})
 	public String maratona(	@RequestParam(name="semestreMaratona", required=false) Long semestre,
 							@RequestParam(name="dataMaratona", required=false) String data,
 							Model model, HttpServletRequest request) {
@@ -211,7 +211,7 @@ public class Cadastrar {
 		
 	}
 
-	@RequestMapping(value = "/Semestre", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/semestre", method = {RequestMethod.GET, RequestMethod.POST})
 	public String semestre(	@RequestParam(name="anoSemestre", required=false) Integer ano,
 							@RequestParam(name="numSemestre", required=false) Integer semestre,
 							Model model, HttpServletRequest request) {
@@ -256,7 +256,7 @@ public class Cadastrar {
 		
 	}
 	
-	@RequestMapping(value = "/Turma", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/turma", method = {RequestMethod.GET, RequestMethod.POST})
 	public String turma(@RequestParam(name="nomeTurma", required=false) String nome,
 						@RequestParam(name="codTurma", required=false) String cod,
 						@RequestParam(name="cursoTurma", required=false) String curso,
@@ -311,7 +311,7 @@ public class Cadastrar {
 		
 	}
 	
-	@RequestMapping(value = "/Usuario", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/usuario", method = {RequestMethod.GET, RequestMethod.POST})
 	public String usuario(	@RequestParam(name="nomeUsuario", required=false) String nome,
 							@RequestParam(name="usernameUsuario", required=false) String username,
 							@RequestParam(name="senhaUsuario", required=false) String senha,

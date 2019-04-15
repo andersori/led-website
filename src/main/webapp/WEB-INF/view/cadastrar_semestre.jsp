@@ -9,14 +9,14 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<link rel="shortcut icon" href="resources/img/favicon.ico"/>
+		<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico"/>
 		<title><%=Constante.getAppName()%>::Cadastrar Semestre</title>
 	</head>
 	<body>
 		<c:if test="${not empty msg}">
 			${msg}
 		</c:if>
-		<form action="${pageContext.request.contextPath}/CadastrarSemestre" method="post">
+		<form action="${pageContext.request.contextPath}/cadastrar/semestre" method="post">
 			<label>*Ano</label>
 			<input type="number" min="<fmt:formatDate value="${date}" pattern="yyyy" />" name="anoSemestre" value="<fmt:formatDate value="${date}" pattern="yyyy" />">
 			

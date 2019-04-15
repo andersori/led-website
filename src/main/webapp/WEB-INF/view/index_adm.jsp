@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="shortcut icon" href="resources/img/favicon.ico"/>
+		<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico"/>
 		<meta charset="UTF-8">
 		<title><%=Constante.getAppName()%></title>
 	</head>
@@ -12,22 +12,22 @@
 		<c:if test="${not empty msg}">
 			${msg}
 		</c:if>
-		<form method="post" action="${pageContext.request.contextPath}/Sair">
+		<form method="post" action="${pageContext.request.contextPath}/sair">
 			<input type="submit" value="Sair">
 		</form>
 		<br>
 		<form method="post" name="cadastrar">
-			<input type="submit" value="Cadastrar Equipe" onclick="javascript: form.action='${pageContext.request.contextPath}/Cadastrar/Equipe';">
-			<input type="submit" value="Cadastrar Usuario" onclick="javascript: form.action='${pageContext.request.contextPath}/Cadastrar/Usuario';">
-			<input type="submit" value="Cadastrar Aluno" onclick="javascript: form.action='${pageContext.request.contextPath}/Cadastrar/Aluno';">
-			<input type="submit" value="Cadastrar Turma" onclick="javascript: form.action='${pageContext.request.contextPath}/Cadastrar/Turma';">
-			<input type="submit" value="Cadastrar Semestre" onclick="javascript: form.action='${pageContext.request.contextPath}/Cadastrar/Semestre';">
-			<input type="submit" value="Cadastrar Maratona" onclick="javascript: form.action='${pageContext.request.contextPath}/Cadastrar/Maratona';">
+			<input type="submit" value="Cadastrar Equipe" onclick="javascript: form.action='${pageContext.request.contextPath}/cadastrar/equipe';">
+			<input type="submit" value="Cadastrar Usuario" onclick="javascript: form.action='${pageContext.request.contextPath}/cadastrar/usuario';">
+			<input type="submit" value="Cadastrar Aluno" onclick="javascript: form.action='${pageContext.request.contextPath}/cadastrar/aluno';">
+			<input type="submit" value="Cadastrar Turma" onclick="javascript: form.action='${pageContext.request.contextPath}/cadastrar/turma';">
+			<input type="submit" value="Cadastrar Semestre" onclick="javascript: form.action='${pageContext.request.contextPath}/cadastrar/semestre';">
+			<input type="submit" value="Cadastrar Maratona" onclick="javascript: form.action='${pageContext.request.contextPath}/cadastrar/maratona';">
 		</form>
 		<br>
-		<form method="post" name="editar">
-			<input type="submit" value="Editar Equipe" onclick="javascript: form.action='${pageContext.request.contextPath}/Editar/Equipe/1';">
-			<input type="submit" value="Editar Administrador" onclick="javascript: form.action='${pageContext.request.contextPath}/Editar/Usuario/1';">
+		<form method="post" name="listar">
+			<input type="submit" value="Listar Equipe" onclick="javascript: form.action='${pageContext.request.contextPath}/listar/equipe';">
+			<input type="submit" value="Listar Alunos" onclick="javascript: form.action='${pageContext.request.contextPath}/listar/aluno';">
 		</form>
 	</body>
 </html>

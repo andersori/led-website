@@ -5,14 +5,14 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<link rel="shortcut icon" href="resources/img/favicon.ico"/>
+		<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico"/>
 		<title><%=Constante.getAppName()%>::Cadastrar Maratona</title>
 	</head>
 	<body>
 		<c:if test="${not empty msg}">
 			<p>${msg}</p>
 		</c:if>
-		<form action="${pageContext.request.contextPath}/CadastrarMaratona" method="post">
+		<form action="${pageContext.request.contextPath}/cadastrar/maratona" method="post">
 			<label>*Semestre</label>
 			<select name="semestreMaratona" required="required">
 				<c:forEach var="semestre" items="${semestres}">

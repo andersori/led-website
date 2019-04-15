@@ -23,6 +23,7 @@ import javax.persistence.Table;
 @NamedQueries(value = {
     @NamedQuery(name = "equipe_get_by_user", query = "from Equipe e where e.usuario = :usuario"),
     @NamedQuery(name = "equipe_get_by_maratona", query = "from Equipe e where e.maratona = :maratona"),
+    @NamedQuery(name = "equipe_get_by_casa", query = "from Equipe e where e.casa = :casa"),
     @NamedQuery(name = "equipe_get_by_maratona_casa", query = "from Equipe e where e.maratona = :maratona and e.casa = :casa"),
 })
 public class Equipe {

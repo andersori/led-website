@@ -121,5 +121,27 @@ public class EquipeHib implements EquipeDAO{
         }
         return lis;
 	}
+
+	@Override
+	public List<Equipe> listByCasa(Casa casa) {
+		Session session = Hibernate.getSessionFactory().openSession();
+        Transaction t = session.beginTransaction();
+        List<Equipe> lis = new ArrayList<Equipe>();
+
+        try {
+            Query<Equipe> qry = session.getNamedQuery("equipe_get_by_casa");
+            qry.setParameter("casa", casa);
+            
+            lis = qry.getResultList();
+            t.commit();
+            
+        } catch (RuntimeException ex) {
+            t.rollback();
+            throw ex;
+        } finally {
+            session.close();
+        }
+        return lis;
+	}
 	
 }

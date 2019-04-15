@@ -36,7 +36,7 @@ public class Autenticado implements Filter {
 
     		
     		UsuarioBean user = (UsuarioBean) session.getAttribute("usuario");
-    		String loginURI = req.getContextPath() + "/Login";
+    		String loginURI = req.getContextPath() + "/login";
     		
     		boolean logado = false;
     		boolean loginRequest = req.getRequestURI().equals(loginURI);
@@ -53,7 +53,7 @@ public class Autenticado implements Filter {
     		}
     		else {
     			session.removeAttribute("usuario");
-    			res.sendRedirect(req.getContextPath()+"/Login");
+    			res.sendRedirect(req.getContextPath()+"/login");
     		}
         }
 		

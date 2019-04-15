@@ -5,14 +5,14 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<link rel="shortcut icon" href="resources/img/favicon.ico"/>
+		<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico"/>
 		<title><%=Constante.getAppName()%>::Cadastrar Equipe</title>
 	</head>
 	<body>
 		<c:if test="${not empty msg}">
 			${msg}
 		</c:if>
-		<form method="post" action="${pageContext.request.contextPath}/CadastrarEquipe">
+		<form method="post" action="${pageContext.request.contextPath}/cadastrar/equipe">
 			<label>*Nome:</label>
 			<input type="text" name="nomeEquipe" required="required" value="${nome}">
 			

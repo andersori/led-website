@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="shortcut icon" href="resources/img/favicon.ico"/>
+		<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico"/>
 		<meta charset="UTF-8">
 		<title><%=Constante.getAppName()%></title>
 	</head>
@@ -15,11 +15,11 @@
 		<b>Equipe: ${usuario.nome}</b>
 		<br>			
 		<b>Casa: ${equipe.casa}</b>
-		<form method="post" action="${pageContext.request.contextPath}/Sair">
+		<form method="post" action="${pageContext.request.contextPath}/sair">
 			<input type="submit" value="Sair">
 		</form>
 		<br>
-		<form method="post" action="${pageContext.request.contextPath}/EscolherCasa/${equipe.id}">
+		<form method="post" action="${pageContext.request.contextPath}/escolherCasa/${equipe.id}">
 			<input type="submit" value="Definir Casa">
 		</form>
 	</body>

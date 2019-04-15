@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller("sair")
-@RequestMapping("/Sair")
+@RequestMapping("/sair")
 public class Sair {
 	
 	@RequestMapping(method = RequestMethod.GET)
@@ -17,7 +17,7 @@ public class Sair {
 		HttpSession session = request.getSession();
 		session.removeAttribute("usuario");
 		
-		return "redirect:"+request.getContextPath()+"/Login";
+		return "redirect:"+request.getContextPath()+"/login";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)

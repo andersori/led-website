@@ -17,4 +17,18 @@ public enum Casa {
 	public int getId() {
 		return id;
 	}
+	
+	public static Casa getCasa(String nome) {
+		if(nome.toUpperCase().equals("GRIFINORIA")) {
+			return GRIFINORIA;
+		} else if(nome.toUpperCase().equals("CORVINAL")) {
+			return CORVINAL;
+		} else if(nome.toUpperCase().equals("SONSERINA")) {
+			return SONSERINA;
+		} else if(nome.toUpperCase().equals("LUFALUFA")) {
+			return LUFALUFA;
+		} else {
+			return INDEFINIDO;
+		}
+	}
 }
