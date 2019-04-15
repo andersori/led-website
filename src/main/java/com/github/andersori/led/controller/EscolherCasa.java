@@ -55,7 +55,6 @@ public class EscolherCasa {
 			}
 			
 		} catch(Exception e) {
-			e.printStackTrace();
 			model.addAttribute("msg", "Equipe não encontrada");
 		}
 		

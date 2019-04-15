@@ -17,16 +17,17 @@
 		</form>
 		<br>
 		<form method="post" name="cadastrar">
-			<input type="submit" value="Cadastrar Equipe" onclick="javascript: form.action='${pageContext.request.contextPath}/CadastrarEquipe';">
-			<input type="submit" value="Cadastrar Usuario" onclick="javascript: form.action='${pageContext.request.contextPath}/CadastrarUsuario';">
-			<input type="submit" value="Cadastrar Aluno" onclick="javascript: form.action='${pageContext.request.contextPath}/CadastrarAluno';">
-			<input type="submit" value="Cadastrar Turma" onclick="javascript: form.action='${pageContext.request.contextPath}/CadastrarTurma';">
-			<input type="submit" value="Cadastrar Semestre" onclick="javascript: form.action='${pageContext.request.contextPath}/CadastrarSemestre';">
+			<input type="submit" value="Cadastrar Equipe" onclick="javascript: form.action='${pageContext.request.contextPath}/Cadastrar/Equipe';">
+			<input type="submit" value="Cadastrar Usuario" onclick="javascript: form.action='${pageContext.request.contextPath}/Cadastrar/Usuario';">
+			<input type="submit" value="Cadastrar Aluno" onclick="javascript: form.action='${pageContext.request.contextPath}/Cadastrar/Aluno';">
+			<input type="submit" value="Cadastrar Turma" onclick="javascript: form.action='${pageContext.request.contextPath}/Cadastrar/Turma';">
+			<input type="submit" value="Cadastrar Semestre" onclick="javascript: form.action='${pageContext.request.contextPath}/Cadastrar/Semestre';">
+			<input type="submit" value="Cadastrar Maratona" onclick="javascript: form.action='${pageContext.request.contextPath}/Cadastrar/Maratona';">
 		</form>
 		<br>
 		<form method="post" name="editar">
-			<input type="submit" value="Editar Equipe" onclick="javascript: form.action='${pageContext.request.contextPath}/EditarEquipe';">
-			<input type="submit" value="Editar Administrador" onclick="javascript: form.action='${pageContext.request.contextPath}/EditarUsuario';">
+			<input type="submit" value="Editar Equipe" onclick="javascript: form.action='${pageContext.request.contextPath}/Editar/Equipe/1';">
+			<input type="submit" value="Editar Administrador" onclick="javascript: form.action='${pageContext.request.contextPath}/Editar/Usuario/1';">
 		</form>
 	</body>
 </html>

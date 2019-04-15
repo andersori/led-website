@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico"/>
+		<link rel="shortcut icon" href="resources/img/favicon.ico"/>
 		<meta charset="UTF-8">
 		<title><%=Constante.getAppName()%></title>
 	</head>
