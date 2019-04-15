@@ -25,12 +25,5 @@
 			<input type="submit" value="Cadastrar">
 		</form>
 		<span>*Obrigatório</span>
-		<br>
-		<h3>Semestres Cadastrados</h3>
-		<ul>
-			<c:forEach var="semestre" items="${semestres}">
-				<li>${semestre.ano}.${semestre.numSemestre}</li>
-			</c:forEach>
-		</ul>
 	</body>
 </html>

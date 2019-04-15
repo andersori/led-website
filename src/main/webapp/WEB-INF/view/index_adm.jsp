@@ -27,7 +27,8 @@
 		<br>
 		<form method="post" name="listar">
 			<input type="submit" value="Listar Equipe" onclick="javascript: form.action='${pageContext.request.contextPath}/listar/equipe';">
-			<input type="submit" value="Listar Alunos" onclick="javascript: form.action='${pageContext.request.contextPath}/listar/aluno';">
+			<input type="submit" value="Listar Maratonas" onclick="javascript: form.action='${pageContext.request.contextPath}/listar/maratona';">
+			<input type="submit" value="Listar Alunos" onclick="javascript: form.action='${pageContext.request.contextPath}/listar/alunos';">
 		</form>
 	</body>
 </html>

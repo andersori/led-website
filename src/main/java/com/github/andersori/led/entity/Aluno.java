@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Table(name = "aluno")
 @NamedQueries(value = {
 	    @NamedQuery(name = "aluno_get_by_equipe", query = "from Aluno a where a.equipe = :equipe"),
-	    @NamedQuery(name = "aluno_get_by_turma", query = "from Aluno a where a.turma = :turma"),
+	    @NamedQuery(name = "aluno_get_by_turma", query = "from Aluno a where a.turma = :turma")
 })
 public class Aluno {
 	

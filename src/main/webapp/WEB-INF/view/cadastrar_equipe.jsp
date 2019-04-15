@@ -33,12 +33,5 @@
 			
 			<input type="submit" value="Cadastrar">
 		</form>
-		<br>
-		<h3>Equipes Cadastradas</h3>
-		<ul>
-			<c:forEach var="equipe" items="${equipes}">
-				<li>${equipe.usuario.nome} de ${equipe.turma.nome}</li>
-			</c:forEach>
-		</ul>
 	</body>
 </html>

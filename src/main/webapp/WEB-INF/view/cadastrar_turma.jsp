@@ -35,13 +35,5 @@
 			<input type="submit" value="Cadastrar">
 		</form>
 		<span>*Obrigatório</span>
-		<br>
-		
-		<h3>Turmas Cadastradas</h3>
-		<ul>
-			<c:forEach var="turma" items="${turmas}">
-				<li>${turma.nome} de ${turma.curso}</li>
-			</c:forEach>
-		</ul>
 	</body>
 </html>

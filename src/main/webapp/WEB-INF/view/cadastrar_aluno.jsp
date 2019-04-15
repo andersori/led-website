@@ -28,12 +28,5 @@
 			<input type="submit" value="Cadastrar">
 		</form>
 		<span>*Obrigatório</span>
-		<br>
-		<h3>Alunos(as) Cadastrados(as)</h3>
-		<ul>
-			<c:forEach var="aluno" items="${alunos}">
-				<li>${aluno.nome} de ${aluno.turma.nome}</li>
-			</c:forEach>
-		</ul>
 	</body>
 </html>
