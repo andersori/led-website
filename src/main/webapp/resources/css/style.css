@@ -1,10 +1,65 @@
+html{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 10vh;
+}
+
 body{
-    background: url('../img/login.jpg') no-repeat center center fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 10vh;
+	
+    background: url('../img/login22.jpg') no-repeat center center fixed;
 	background-size: cover;
-	height: 100%;
-    color: white;
     font-family: "Times New Roman", Times, serif;
+}
+
+.login{
+	border: 1px solid rgba(255,255,255, 0.3);
+	border-radius: 5px;
+	padding: 3em;
+	position: absolute;
+	top: 50%;
+	left: 95%;
+	transform: translateX(-95%) translateY(-50%);
+	text-align: center;
+}
+
+.login input{
+	color: white;
+	display: block;
+	width: 300px;
+	height: 50px;
+	background: rgba(255,255,255,0.1);
+	outline: none;
+	border: 1px solid rgba(255,255,255,0.1);
+	font-weight: lighter;
+	font-size: 14px;
+	margin-bottom: 10px;
+	padding-left: 10px;
+	border-radius: 5px;
+}
+
+.login input::placeholder{
+	color: rgba(255,255,255,0.8);
+}
+
+.login button {
+	width: 300px;
+	height: 50px;
+	font-size: 16px;
+	background: #000;
+	font-weight: lighter;
+	color: #fff;
+	border: 0px;
+	border-radius: 5px;
+}
+
+.login h1{
+	text-align: center;
+	font-size: 50px;
+	color: white;
+	font-weight: lighter;
 }

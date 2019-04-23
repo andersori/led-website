@@ -13,10 +13,13 @@
 		<c:if test="${not empty msg}">
 			${msg}
 		</c:if>
-		<form method="post" action="${pageContext.request.contextPath}/login">
-			<input type="text" placeholder="username" name="username" required="required">
-			<input type="password" placeholder="******" name="senha" required="required">
-			<input type="submit" value="Entrar">
-		</form>
+		<div class="login">
+			<h1>Sign in to <%=Constante.getAppName()%></h1>
+			<form method="post" action="${pageContext.request.contextPath}/login">
+				<input type="text" placeholder="username" name="username" required="required">
+				<input type="password" placeholder="******" name="senha" required="required">
+				<button class="btn_login">Sign in</button>
+			</form>
+		</div>
 	</body>
 </html>
