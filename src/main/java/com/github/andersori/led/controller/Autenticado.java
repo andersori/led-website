@@ -22,9 +22,7 @@ public class Autenticado implements Filter {
 		HttpServletRequest req = (HttpServletRequest)  request;	
         HttpServletResponse res = (HttpServletResponse) response;	
         HttpSession session = req.getSession();
-        
-        System.out.println("Requisitando: " + req.getRequestURI());
-        
+                
         if(req.getRequestURI().endsWith(".js") || 
         		req.getRequestURI().endsWith(".css") || 
         		req.getRequestURI().endsWith(".ico") || 

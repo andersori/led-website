@@ -1,5 +1,9 @@
 package com.github.andersori.led.controller;
 
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -30,6 +34,15 @@ public class Index {
 				EquipeDAO dao = new EquipeHib();
 				
 				model.addAttribute("equipe", dao.get(user.toEntity()));
+				
+				Enumeration<String> enumeration = request.getParameterNames();
+			    Map<String, Object> modelMap = new HashMap<>();
+			    
+			    while(enumeration.hasMoreElements()){
+			        String parameterName = enumeration.nextElement();
+			        modelMap.put(parameterName, request.getParameter(parameterName));
+			    }
+			    model.addAttribute("parameters", modelMap);
 				return "index_equipe";
 			}
 		}

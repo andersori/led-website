@@ -1,0 +1,60 @@
+.body-equipe{
+    background-color: #7f8c8d;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.content-escolha{
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    color: white;
+    height: auto;
+    margin-top: 10px;
+}
+
+.content-escolha .dialogo{
+    position: relative;
+    display:inline-block; /* ou float:left, vai do seu uso */
+    background-color: #000000;
+    border-top:10px solid #37688D;
+    background-clip: padding-box;
+    padding: 0 10px 10px 10px;
+    border-radius: 5px 5px;
+}
+
+.img-chapel{
+    position: relative;
+    padding-top: 10px;
+}
+
+.img-chapel img{
+    max-width: 100%;
+}
+
+.btn-escolha{
+    background-color: #000000;
+    display: inline-block;
+    width: 200px;
+    font-weight: bold;
+    padding: 10px;
+    border: 4px solid;
+    text-align: center;
+    color: white;
+    border-color: #37688D;
+    border-radius: 5px 5px;
+    outline: none;
+    text-decoration: none;
+    transition: background-color 0.2s ease-out, color 0.2s ease-out;
+}
+
+.btn-escolha:hover, .btn-escolha:active{
+    background-color: rgba(0,0,0,0.0);
+    transition: background-color 0.3s ease-in, color 0.3s ease-in;
+    cursor: pointer;
+}
+
+.btn-escolha:disabled{
+    cursor: wait;
+}

@@ -20,9 +20,10 @@ import org.hibernate.cfg.Environment;
 public class Hibernate{
 
     private static Hibernate SINGLE_INSTANCE = null;
-
+    private static boolean connected = false;
+    
     private static StandardServiceRegistry registry;
-    private static final SessionFactory sessionFactory = buildSessionFactory();
+    private static SessionFactory sessionFactory = buildSessionFactory();
 
     private Hibernate(){
     	
@@ -41,9 +42,10 @@ public class Hibernate{
     }
 
     private static SessionFactory buildSessionFactory(){
+    	System.err.println("Conectando ao banco de dados...");
         try{
             StandardServiceRegistryBuilder registryBuilder = new StandardServiceRegistryBuilder();
-            Database db = Database.getInstance();
+            Database db = new Database();
 
             Map<String, String> settings = new HashMap<String, String>();
             settings.put(Environment.DRIVER, db.getDrive());
@@ -69,11 +71,15 @@ public class Hibernate{
                                             .addAnnotatedClass(Maratona.class);
                                             
             Metadata metadata = sources.getMetadataBuilder().build();
-
+            
+            Hibernate.connected = true;
+            System.err.println("Conectado ao banco de dados.");
             return metadata.getSessionFactoryBuilder().build();
         }
         catch(Throwable e){
             System.err.println("Failed to start SessionFactory." + e);
+            
+            Hibernate.connected = false;
             throw new ExceptionInInitializerError(e);
         }
     }
@@ -82,6 +88,10 @@ public class Hibernate{
         
         if(SINGLE_INSTANCE == null){
             getInstance();
+            if(!Hibernate.connected)
+            {
+            	Hibernate.sessionFactory = buildSessionFactory();
+            }
         }
 
         return sessionFactory;
@@ -91,10 +101,6 @@ public class Hibernate{
         if(registry != null){
             StandardServiceRegistryBuilder.destroy(registry);   
         }
-    }
-    
-    public static void init() {
-    	getSessionFactory();
     }
 
 }

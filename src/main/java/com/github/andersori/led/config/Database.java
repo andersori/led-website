@@ -9,27 +9,14 @@ import com.github.andersori.led.util.Constante;
 
 public class Database{
 
-    private static Database SINGLE_INSTANCE = null;
-
     private String drive;
     private String url;
     private String user;
     private String password;
     private String dialect;
 
-    private Database(){
+    public Database(){
         loadData();
-    }
-
-    public static Database getInstance(){
-        if(SINGLE_INSTANCE == null){
-            synchronized(Database.class){
-                if(SINGLE_INSTANCE == null){
-                    SINGLE_INSTANCE = new Database();
-                }
-            }
-        }
-        return SINGLE_INSTANCE;
     }
 
     private void loadData(){

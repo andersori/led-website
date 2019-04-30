@@ -11,7 +11,7 @@ body{
 	width: 100%;
 	height: 10vh;
 	
-    background: url('../img/login22.jpg') no-repeat center center fixed;
+    background-color: #7f8c8d;
 	background-size: cover;
     font-family: "Times New Roman", Times, serif;
 }
