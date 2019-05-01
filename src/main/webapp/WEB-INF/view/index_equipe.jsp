@@ -8,37 +8,60 @@
 	<head>
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style-equipe.css" rel="text/css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="text/css" />
 		<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico"/>
 		<title><%=Constante.getAppName()%></title>
 	</head>
 	<body class="body-equipe">
-		<div class="container">
-			<div class="content-escolha">
-				<h1>${usuario.nome}</h1>
-				<div class="dialogo" id="dialogo-text">
-					<p>...</p>
-				</div>
-				<div class="chapel">
-					<div class="img-chapel">
-						<img src="${pageContext.request.contextPath}/resources/img/chapel.png">
+		<div class="meu-container">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+			        <ul class="navbar-nav mr-auto">
+			            <li class="nav-item active">
+			                <a class="nav-link" href="#">Início</a>
+			            </li>
+			        </ul>
+			    </div>
+			    <div class="mx-auto order-0">
+			        <a class="navbar-brand mx-auto" href="${pageContext.request.contextPath}">
+			        	<img src="${pageContext.request.contextPath}/resources/img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+						<%=Constante.getAppName()%>
+					</a>
+			        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+			            <span class="navbar-toggler-icon"></span>
+			        </button>
+			    </div>
+			    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+			        <ul class="navbar-nav ml-auto">
+			            <li class="nav-item">
+			                <a class="nav-link" href="${pageContext.request.contextPath}/sair">Sair</a>
+			            </li>
+			        </ul>
+			    </div>
+			</nav>
+			<c:if test="${equipe.casa.id == 0}"><!-- 0 significa indefinido -->
+				<div class="content-escolha">
+					<h1>${usuario.nome}</h1>
+					<div class="dialogo" id="dialogo-text">
+						<p>...</p>
 					</div>
-					
-					<% 
-						Map<String, Object> modelMap = (HashMap<String, Object>) request.getAttribute("parameters");
-						if(modelMap.get("msg") != null){
-					%>
+					<div class="chapel">
+						<div class="img-chapel">
+							<img src="${pageContext.request.contextPath}/resources/img/chapel.png">
+						</div>
+						
+						<c:if test="${not empty msg}">
 							<div class="msg">
-								<p><%= modelMap.get("msg") %></p>
+								<p>${msg}</p>
 							</div>
-					<%
-						}
-					%>
-
-					<div class="form-escolha">
-						<button class="btn-escolha" id="btn-escolha" onclick="escolherEquipe()">Definir Casa</button>
+						</c:if>
+						
+						<div class="form-escolha">
+							<button class="btn-escolha" id="btn-escolha" onclick="escolherEquipe()">Definir Casa</button>
+						</div>
 					</div>
 				</div>
-			</div>
+			</c:if>
 		</div>
 	</body>
 	<script>
@@ -51,10 +74,10 @@
 				btn.setAttribute('disabled','');
 	
 				let frases_boas_inicias = [
-					'...',
-					'Umm!',
-					'Parece que você não faz parte de uma casa ainda.',
-					'Vamos não perca tempo, deixe-me te analisar para que você possa fazer parte de uma equipe!'
+					['...', 1000],
+					['Umm!', 1000],
+					['Parece que você não faz parte de uma casa ainda.', 2500],
+					['Vamos não perca tempo, deixe-me te analisar para decidir em qual casa devo te colocar!', 3000]
 				];
 	
 	
@@ -64,15 +87,15 @@
 				function timeout(i) {
 					if(i < frases_boas_inicias.length){						
 						setTimeout(function () {
-							dialogo.textContent = frases_boas_inicias[i];
+							dialogo.textContent = frases_boas_inicias[i][0];
 							timeout(++i);
-						}, Math.floor((frases_boas_inicias[i].length / 15)) * 500);
+						}, frases_boas_inicias[i][1]);
 					}
 					else{
 						btn.removeAttribute('disabled');
 					}
 				}
-				timeout(0);
+				timeout(0);//Primeira frase exibida
 	
 			}
 	
@@ -88,15 +111,15 @@
 				
 				let dialogo = document.getElementById('dialogo-text');
 				let frases_do_chapeu = [
-					'Ahh..',
-					'Uhmmm...',
-					'Muito bem..',
-					'Eu sei muito bem o que fazer com você..',
-					'Difícil... Muito difícil...',
-					'Tem muita coragem e uma mente nada mau também...',
-					'Tem talento, se tem...',
-					'Não tenho certeza se te coloco na Sonserina...',
-					'Creio que Lufa Lufa não seria uma má ideia pra você...'
+					['Ahh..', 1400],
+					['Uhmmm...', 1400],
+					['Muito bem..', 1000],
+					['Eu sei muito bem o que fazer com você..', 1800],
+					['Difícil... Muito difícil...', 1800],
+					['Tem muita coragem e uma mente nada mau também...', 2200],
+					['Tem talento, se tem...', 1800],
+					['Não tenho certeza se te coloco na Sonserina...', 2000],
+					['Creio que Lufa Lufa não seria uma má ideia pra você...', 2800]
 				]
 	
 	
@@ -106,17 +129,14 @@
 				function timeout(i) {
 					if(i > 0){
 						let num_frase = Math.floor(Math.random() * frases_do_chapeu.length);
-						let tempo = 2000;
 	
 						setTimeout(function () {
-							dialogo.textContent = frases_do_chapeu[num_frase];
+							dialogo.textContent = frases_do_chapeu[num_frase][0];
 							frases_do_chapeu.splice(num_frase,1)
 							timeout(--i);
-						}, tempo);
+						}, frases_do_chapeu[num_frase][1]);
 					}
 					else {
-	
-						let tempo = 2000;
 	
 						setTimeout(function(){
 	
@@ -127,13 +147,15 @@
 							div_form.append(form);
 							form.submit();
 							
-						}, tempo)
+						}, 2800)
 	
 					}
 				}
-				timeout(4);
+				timeout(4);//Qtd de frases exibidas
 			}
 	
 		}
 	</script>
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 </html>

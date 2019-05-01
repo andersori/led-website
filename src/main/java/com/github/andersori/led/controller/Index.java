@@ -1,9 +1,5 @@
 package com.github.andersori.led.controller;
 
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,8 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.andersori.led.bean.EquipeBean;
 import com.github.andersori.led.bean.UsuarioBean;
 import com.github.andersori.led.dao.EquipeDAO;
 import com.github.andersori.led.dao.hibernate.EquipeHib;
@@ -24,7 +22,8 @@ import com.github.andersori.led.entity.Permissao;
 public class Index {
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public String getIndex(Model model, HttpServletRequest request) {
+	public String getIndex(	@RequestParam(name="msg", required=false) String msg,
+							Model model, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
 		UsuarioBean user = (UsuarioBean) session.getAttribute("usuario");
@@ -32,17 +31,16 @@ public class Index {
 		if(user != null) {
 			if(user.getPermissao() == Permissao.EQUIPE) {
 				EquipeDAO dao = new EquipeHib();
+				EquipeBean beanEquipe = new EquipeBean();
+				beanEquipe.toBean(dao.get(user.toEntity()));
 				
-				model.addAttribute("equipe", dao.get(user.toEntity()));
+				model.addAttribute("equipe", beanEquipe);
 				
-				Enumeration<String> enumeration = request.getParameterNames();
-			    Map<String, Object> modelMap = new HashMap<>();
+				if(msg != null)
+				{
+					model.addAttribute("msg", msg);
+				}
 			    
-			    while(enumeration.hasMoreElements()){
-			        String parameterName = enumeration.nextElement();
-			        modelMap.put(parameterName, request.getParameter(parameterName));
-			    }
-			    model.addAttribute("parameters", modelMap);
 				return "index_equipe";
 			}
 		}
@@ -50,8 +48,9 @@ public class Index {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public String postIndex(Model model, HttpServletRequest request) {
-		return getIndex(model, request);
+	public String postIndex(@RequestParam(name="msg", required=false) String msg,
+							Model model, HttpServletRequest request) {
+		return getIndex(msg, model, request);
 	}
 	
 	@GetMapping("favicon.ico")

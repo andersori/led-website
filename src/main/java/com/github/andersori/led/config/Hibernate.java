@@ -88,10 +88,11 @@ public class Hibernate{
         
         if(SINGLE_INSTANCE == null){
             getInstance();
-            if(!Hibernate.connected)
-            {
-            	Hibernate.sessionFactory = buildSessionFactory();
-            }
+        }
+        
+        if(Hibernate.connected == false)
+        {
+        	Hibernate.sessionFactory = buildSessionFactory();
         }
 
         return sessionFactory;
