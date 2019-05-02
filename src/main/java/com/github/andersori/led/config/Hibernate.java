@@ -20,10 +20,9 @@ import org.hibernate.cfg.Environment;
 public class Hibernate{
 
     private static Hibernate SINGLE_INSTANCE = null;
-    private static boolean connected = false;
     
     private static StandardServiceRegistry registry;
-    private static SessionFactory sessionFactory = buildSessionFactory();
+    private static final SessionFactory sessionFactory = buildSessionFactory();
 
     private Hibernate(){
     	
@@ -53,7 +52,7 @@ public class Hibernate{
             settings.put(Environment.USER, db.getUser());
             settings.put(Environment.PASS, db.getPassword());
             settings.put(Environment.DIALECT, db.getDialect());
-            //settings.put(Environment.SHOW_SQL, "true");
+            settings.put(Environment.SHOW_SQL, "false");
             settings.put(Environment.POOL_SIZE, "10");
             //settings.put(Environment.HBM2DDL_AUTO, "create-drop");
             settings.put(Environment.NON_CONTEXTUAL_LOB_CREATION, "true");
@@ -72,14 +71,12 @@ public class Hibernate{
                                             
             Metadata metadata = sources.getMetadataBuilder().build();
             
-            Hibernate.connected = true;
             System.err.println("Conectado ao banco de dados.");
             return metadata.getSessionFactoryBuilder().build();
         }
         catch(Throwable e){
             System.err.println("Failed to start SessionFactory." + e);
             
-            Hibernate.connected = false;
             throw new ExceptionInInitializerError(e);
         }
     }
@@ -90,11 +87,6 @@ public class Hibernate{
             getInstance();
         }
         
-        if(Hibernate.connected == false)
-        {
-        	Hibernate.sessionFactory = buildSessionFactory();
-        }
-
         return sessionFactory;
     }
 

@@ -46,7 +46,7 @@ public class EscolherCasa {
 							model.addAttribute("msg", "Não foi possivel definir uma casa para você, tente novamente.");
 						}
 					} else {
-						model.addAttribute("msg", "Você não foi cadastrado em uma maratona.");
+						model.addAttribute("msg", "Você não está cadastrado em uma maratona.");
 					}
 					
 				}else {

@@ -4,16 +4,27 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="text/css" />
 		<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico"/>
 		<meta charset="UTF-8">
 		<title><%=Constante.getAppName()%>::Lista de Maratonas</title>
 	</head>
 	<body>
-		<h3>Maratonas Cadastradas</h3>
-		<ul>
-			<c:forEach var="maratona" items="${maratonas}">
-				<li>${maratona.id} - ${maratona.semestre.ano}.${maratona.semestre.numSemestre}[${maratona.data}] <a href="${pageContext.request.contextPath}/editar/maratona/${maratona.id}">Editar</a></li>
-			</c:forEach>
-		</ul>
+	
+		<c:import url="nav_bar.jsp" charEncoding="UTF-8"></c:import>
+		
+		<div class="container">
+			<c:if test="${not empty msg}">
+				${msg}
+			</c:if>
+			<h3>Maratonas Cadastradas</h3>
+			<ul>
+				<c:forEach var="maratona" items="${maratonas}">
+					<li>${maratona.id} - ${maratona.semestre.ano}.${maratona.semestre.numSemestre}[${maratona.data}] <a href="${pageContext.request.contextPath}/editar/maratona/${maratona.id}">Editar</a></li>
+				</c:forEach>
+			</ul>
+		</div>
 	</body>
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 </html>
