@@ -58,3 +58,16 @@
 .btn-escolha:disabled{
     cursor: wait;
 }
+
+.casa-definida{
+	text-align: center;
+    width: 100%;
+    color: white;
+    height: auto;
+    margin-top: 10px;
+}
+
+.img-casa img{
+	height: 400px;
+	width: auto;
+}

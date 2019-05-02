@@ -38,6 +38,57 @@
 					</div>
 				</div>
 			</c:if>
+			
+			<div class="casa-definida">
+				<c:if test="${equipe.casa.id == 1}"><!-- 1 significa GRIFINORIA -->
+					<h1>${usuario.nome}</h1>
+					<h2>Casa: GRIFINORIA</h2>
+					<div class="img-casa">
+						<img src="${pageContext.request.contextPath}/resources/img/grifinoria.png">
+					</div>
+					<c:if test="${not empty msg}">
+						<div class="msg">
+							<p>${msg}</p>
+						</div>
+					</c:if>
+				</c:if>
+				<c:if test="${equipe.casa.id == 2}"><!-- 2 significa CORVINAL -->
+					<h1>${usuario.nome}</h1>
+					<h2>Casa: CORVINAL</h2>
+					<div class="img-casa">
+						<img src="${pageContext.request.contextPath}/resources/img/corvinal.png">
+					</div>
+					<c:if test="${not empty msg}">
+						<div class="msg">
+							<p>${msg}</p>
+						</div>
+					</c:if>
+				</c:if>
+				<c:if test="${equipe.casa.id == 3}"><!-- 3 significa SONSERINA -->
+					<h1>${usuario.nome}</h1>
+					<h2>Casa: SONSERINA</h2>
+					<div class="img-casa">
+						<img src="${pageContext.request.contextPath}/resources/img/sonserina.png">
+					</div>
+					<c:if test="${not empty msg}">
+						<div class="msg">
+							<p>${msg}</p>
+						</div>
+					</c:if>
+				</c:if>
+				<c:if test="${equipe.casa.id == 4}"><!-- 4 significa LUFALUFA -->
+					<h1>${usuario.nome}</h1>
+					<h2>Casa: LUFALUFA</h2>
+					<div class="img-casa">
+						<img src="${pageContext.request.contextPath}/resources/img/lufalufa.png">
+					</div>
+					<c:if test="${not empty msg}">
+						<div class="msg">
+							<p>${msg}</p>
+						</div>
+					</c:if>
+				</c:if>
+			</div>
 		</div>
 	</body>
 	<script>

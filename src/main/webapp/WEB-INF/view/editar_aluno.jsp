@@ -17,22 +17,22 @@
 			<c:if test="${not empty msg}">
 				${msg}
 			</c:if>
-			<form method="post" action="${pageContext.request.contextPath}/cadastrar/aluno">
-				<label>*Nome:</label>
+			<form method="post" action="${pageContext.request.contextPath}/editar/aluno/${id_equipe}">
+				<label>Nome:</label>
 				<input type="text" name="nomeAluno" required="required" value="${nome}">
 				
-				<label>*Matricula:</label>
+				<label>Matricula:</label>
 				<input type="text" name="matriculaAluno" required="required" value="${cod}">
 				
-				<select name="turmaAluno" required="required">
+				<select name="turmaEquipe" required="required">
+					<option value="-1" disabled="disabled">Selecione um Semestre</option>
 					<c:forEach var="turma" items="${turmas}">
-						<option value="${turma.id}">${turma.nome}::${turma.curso}</option>
+						<option value="${turma.id}" <c:if test="${turma.id eq id_turma}">selected="selected"</c:if>>${turma.nome}::${turma.curso}</option>
 					</c:forEach>
 				</select>
 								
-				<input type="submit" value="Cadastrar">
+				<input type="submit" value="Editar">
 			</form>
-			<span>*Obrigatório</span>
 		</div>
 	</body>
 	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>

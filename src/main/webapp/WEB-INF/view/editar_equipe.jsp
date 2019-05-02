@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="text/css" />
 		<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico"/>
 		<meta charset="UTF-8">
-		<title><%=Constante.getAppName()%>Editar Equipe</title>
+		<title><%=Constante.getAppName()%>::Editar Equipe</title>
 	</head>
 	<body>
 	
@@ -17,6 +17,35 @@
 			<c:if test="${not empty msg}">
 				${msg}
 			</c:if>
+			<form method="post" action="${pageContext.request.contextPath}/editar/equipe/${id_equipe}">
+				<label>Nome:</label>
+				<input type="text" name="nomeEquipe" value="${nome}">
+				
+				<label>Email:</label>
+				<input type="text" name="emailEquipe" value="${email}">
+				
+				<label>Username:</label>
+				<input type="text" name="usernameEquipe" value="${username}">
+				
+				<label>Senha:</label>
+				<input type="password" name="senhaEquipe" value="${senha}">
+				
+				<select name="turmaEquipe" required="required">
+					<option value="-1" disabled="disabled">Selecione um Semestre</option>
+					<c:forEach var="turma" items="${turmas}">
+						<option value="${turma.id}" <c:if test="${turma.id eq id_turma}">selected="selected"</c:if>>${turma.nome}::${turma.curso}</option>
+					</c:forEach>
+				</select>
+				
+				<select name="maratonaEquipe" required="required">
+					<option value="-1" disabled="disabled">Selecione uma Maratona</option>
+					<c:forEach var="maratona" items="${maratonas}">
+						<option value="${maratona.id}" <c:if test="${maratona.id eq id_maratona}">selected="selected"</c:if>>${maratona.semestre.ano}::${maratona.semestre.numSemestre}</option>
+					</c:forEach>
+				</select>
+				
+				<input type="submit" value="Editar">
+			</form>
 		</div>
 	</body>
 	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>

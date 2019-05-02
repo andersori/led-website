@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="text/css" />
 		<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico"/>
 		<meta charset="UTF-8">
-		<title><%=Constante.getAppName()%>Editar Maratona</title>
+		<title><%=Constante.getAppName()%>::Editar Maratona</title>
 	</head>
 	<body>
 	
