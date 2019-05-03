@@ -41,7 +41,7 @@ public class Autenticado implements Filter {
     		boolean loginRequest = req.getRequestURI().equals(loginURI);
     		
     		if(user != null) {
-    			Usuario userBanco = new UsuarioHib().get(user.getUsername());
+    			Usuario userBanco = new UsuarioHib().get(user.getId());
     			if(userBanco != null && user.getToken().equals(userBanco.getToken())) {
     				logado = true;
     			}

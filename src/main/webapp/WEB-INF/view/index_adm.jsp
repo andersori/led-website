@@ -30,6 +30,8 @@
 				<input type="submit" value="Listar Equipe" onclick="javascript: form.action='${pageContext.request.contextPath}/listar/equipe';">
 				<input type="submit" value="Listar Maratonas" onclick="javascript: form.action='${pageContext.request.contextPath}/listar/maratona';">
 				<input type="submit" value="Listar Alunos" onclick="javascript: form.action='${pageContext.request.contextPath}/listar/alunos';">
+				<input type="submit" value="Listar Usuarios" onclick="javascript: form.action='${pageContext.request.contextPath}/listar/usuarios';">
+				<input type="submit" value="Listar Turmas" onclick="javascript: form.action='${pageContext.request.contextPath}/listar/turmas';">
 			</form>
 		</div>
 	</body>

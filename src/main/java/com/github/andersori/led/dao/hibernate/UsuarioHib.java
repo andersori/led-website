@@ -1,5 +1,6 @@
 package com.github.andersori.led.dao.hibernate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.NoResultException;
@@ -11,6 +12,7 @@ import org.hibernate.Transaction;
 import com.github.andersori.led.config.Hibernate;
 import com.github.andersori.led.dao.DAO;
 import com.github.andersori.led.dao.UsuarioDAO;
+import com.github.andersori.led.entity.Permissao;
 import com.github.andersori.led.entity.Usuario;
 
 public class UsuarioHib implements UsuarioDAO{
@@ -100,4 +102,27 @@ public class UsuarioHib implements UsuarioDAO{
             return false;
         }
     }
+
+	@Override
+	public List<Usuario> listAdm() {
+		Session session = Hibernate.getSessionFactory().openSession();
+        Transaction t = session.beginTransaction();
+        List<Usuario> list = new ArrayList<Usuario>();
+
+        try {
+            Query<Usuario> qry = session.getNamedQuery("usuarios_adm");
+            qry.setParameter("permissao", Permissao.ADM);
+
+            list = qry.getResultList();
+            
+            t.commit();
+            
+        } catch (RuntimeException e) {
+            t.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return list;
+	}
 }

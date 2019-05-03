@@ -99,16 +99,6 @@ public class AppTest{
 		
 		daoAluno.add(a2);
 		
-		Equipe temp = daoEquipe.get(2L);
-		List<Aluno> alus = temp.getAlunos();
-		alus.add(daoAluno.get(1L));
-		
-		Equipe temp1 = daoEquipe.get(1L);
-		List<Aluno> alus1 = temp1.getAlunos();
-		alus1.add(daoAluno.get(1L));
-		
-		daoEquipe.update(temp);
-		daoEquipe.update(temp1);
 	}
 	
 	public static void usuario() {

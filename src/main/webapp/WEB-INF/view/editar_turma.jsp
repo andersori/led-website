@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="text/css" />
 		<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico"/>
 		<meta charset="UTF-8">
-		<title><%=Constante.getAppName()%>::Editar Usuário</title>
+		<title><%=Constante.getAppName()%>::Cadastrar Turma</title>
 	</head>
 	<body>
 	
@@ -17,15 +17,25 @@
 			<c:if test="${not empty msg}">
 				${msg}
 			</c:if>
-			<form method="post" action="${pageContext.request.contextPath}/editar/usuario/${id_usuario}">
+			<form method="post" action="${pageContext.request.contextPath}/editar/turma/${id_turma}">
 				<label>Nome:</label>
-				<input type="text" name="nomeUsuario" value="${nome}">
+				<input type="text" name="nomeTurma" required="required" value="${nome}">
 				
-				<label>Username:</label>
-				<input type="text" name="usernameUsuario" value="${username}">
+				<label>Código:</label>
+				<input type="text" name="codTurma" required="required" value="${cod}">
 				
-				<label>Senha:</label>
-				<input type="password" name="senhaUsuario">
+				<label>Curso:</label>
+				<select name="cursoTurma" required="required">
+					<option value="ES">Engenharia de Software</option>
+					<option value="CC">Ciência da Computação</option>
+				</select>
+				
+				<label>Semestre</label>
+				<select name="semestreTurma" required="required">
+					<c:forEach var="semestre" items="${semestres}">
+						<option value="${semestre.id}" <c:if test="${semestre.id eq id_semestre}">selected="selected"</c:if>>${semestre.ano}.${semestre.numSemestre}</option>
+					</c:forEach>
+				</select>
 				
 				<input type="submit" value="Editar">
 			</form>

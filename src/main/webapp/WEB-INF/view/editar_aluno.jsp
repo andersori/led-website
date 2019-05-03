@@ -17,17 +17,23 @@
 			<c:if test="${not empty msg}">
 				${msg}
 			</c:if>
-			<form method="post" action="${pageContext.request.contextPath}/editar/aluno/${id_equipe}">
+			<form method="post" action="${pageContext.request.contextPath}/editar/aluno/${id_aluno}">
 				<label>Nome:</label>
-				<input type="text" name="nomeAluno" required="required" value="${nome}">
+				<input type="text" name="nomeAluno" value="${nomeAluno}">
 				
 				<label>Matricula:</label>
-				<input type="text" name="matriculaAluno" required="required" value="${cod}">
+				<input type="text" name="matriculaAluno" value="${matriculaAluno}">
 				
-				<select name="turmaEquipe" required="required">
-					<option value="-1" disabled="disabled">Selecione um Semestre</option>
+				<select name="turmaAluno" required="required">
 					<c:forEach var="turma" items="${turmas}">
 						<option value="${turma.id}" <c:if test="${turma.id eq id_turma}">selected="selected"</c:if>>${turma.nome}::${turma.curso}</option>
+					</c:forEach>
+				</select>
+				
+				<select name="equipeAluno" required="required">
+					<option value="-1" disabled="disabled">Escolha uma Equipe</option>
+					<c:forEach var="equipe" items="${equipes}">
+						<option value="${equipe.id}" <c:if test="${equipe.id eq id_equipe}">selected="selected"</c:if>>${equipe.usuario.nome}</option>
 					</c:forEach>
 				</select>
 								

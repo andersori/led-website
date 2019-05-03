@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.github.andersori.led.bean.AlunoBean;
 import com.github.andersori.led.bean.EquipeBean;
 import com.github.andersori.led.bean.SemestreBean;
 import com.github.andersori.led.bean.TurmaBean;
@@ -73,20 +72,13 @@ public class Cadastrar {
 			}
 			
 			List<TurmaBean> listTurma = new ArrayList<>();
-			List<AlunoBean> listMembro = new ArrayList<>();
 			
-			for(Aluno m : daoM.list()) {
-				AlunoBean alunoB = new AlunoBean();
-				alunoB.toBean(m);
-				listMembro.add(alunoB);
-			}
 			for(Turma t : daoT.list()) {
 				TurmaBean turmaB = new TurmaBean();
 				turmaB.toBean(t);
 				listTurma.add(turmaB);
 			}
 			
-			model.addAttribute("alunos", listMembro);
 			model.addAttribute("turmas", listTurma);
 			
 			return "cadastrar_aluno";
@@ -122,6 +114,7 @@ public class Cadastrar {
 					equipeEntity.setCasa(Casa.INDEFINIDO);
 					equipeEntity.setTurma(daoT.get(turma));
 					equipeEntity.setUsuario(usuarioEntity);
+					equipeEntity.setPontos(0);
 				
 					daoE.add(equipeEntity);
 					model.addAttribute("msg", "Equipe '"+nome+"' cadastrado com sucesso.");
@@ -265,7 +258,7 @@ public class Cadastrar {
 			TurmaDAO dao = new TurmaHib();
 			SemestreDAO daoS = new SemestreHib();
 			
-			if(nome != null && cod != null && curso != null) {
+			if(nome != null && cod != null && curso != null && semestre != null) {
 				Turma turmaEntity = new Turma();
 				turmaEntity.setCodDisciplina(cod);
 				turmaEntity.setCurso(curso);
@@ -276,7 +269,7 @@ public class Cadastrar {
 				
 				try {
 					dao.add(turmaEntity);
-					model.addAttribute("msg", "Turma Cadastrada com sucesso.");
+					model.addAttribute("msg", "Turma cadastrada com sucesso.");
 				} catch(Exception e) {
 					model.addAttribute("msg", "A turma '" +nome+ "' não pode ser cadastrada por motivos desconhecidos.");
 				}

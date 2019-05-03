@@ -15,7 +15,8 @@ import javax.persistence.Table;
 @Table(name = "usuario")
 @NamedQueries(value = {
     @NamedQuery(name = "usuario_get_by_username", query = "from Usuario u where u.username = :username"),
-    @NamedQuery(name = "usuario_validar", query = "select count(u) from Usuario u where u.username = :username and u.senha = :senha")
+    @NamedQuery(name = "usuario_validar", query = "select count(u) from Usuario u where u.username = :username and u.senha = :senha"),
+    @NamedQuery(name = "usuarios_adm", query = "from Usuario u where u.permissao = :permissao")
 })
 public class Usuario {
 	

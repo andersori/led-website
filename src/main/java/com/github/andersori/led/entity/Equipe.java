@@ -1,7 +1,5 @@
 package com.github.andersori.led.entity;
 
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,8 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -37,19 +33,11 @@ public class Equipe {
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_user")
     private Usuario usuario;
 
-    @ManyToMany(targetEntity = Aluno.class, fetch = FetchType.EAGER)
-    @JoinTable(
-        name = "aluno_equipe",
-        joinColumns = {@JoinColumn(name = "equipe_id", referencedColumnName = "id_equipe")},
-        inverseJoinColumns = {@JoinColumn(name = "aluno_id", referencedColumnName = "id_aluno")}
-    )
-    private List<Aluno> alunos;
-
     @ManyToOne(targetEntity = Turma.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_turma", nullable = false)
     private Turma turma;
     
-    @Column(name = "pontos", nullable = true)
+    @Column(name = "pontos", nullable = false)
     private Integer pontos;
 
     @Column(name = "casa", nullable = false)
@@ -77,14 +65,6 @@ public class Equipe {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-	}
-
-	public List<Aluno> getAlunos() {
-		return alunos;
-	}
-
-	public void setAlunos(List<Aluno> alunos) {
-		this.alunos = alunos;
 	}
 
 	public Turma getTurma() {

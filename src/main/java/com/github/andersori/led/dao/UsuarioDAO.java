@@ -19,5 +19,7 @@ public interface UsuarioDAO {
     public void remove(Usuario us);
 
     public boolean validar(String username, String senha);
+    
+    public List<Usuario> listAdm();
 	
 }

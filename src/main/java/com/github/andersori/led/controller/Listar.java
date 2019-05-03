@@ -22,16 +22,19 @@ import com.github.andersori.led.dao.AlunoDAO;
 import com.github.andersori.led.dao.EquipeDAO;
 import com.github.andersori.led.dao.MaratonaDAO;
 import com.github.andersori.led.dao.TurmaDAO;
+import com.github.andersori.led.dao.UsuarioDAO;
 import com.github.andersori.led.dao.hibernate.AlunoHib;
 import com.github.andersori.led.dao.hibernate.EquipeHib;
 import com.github.andersori.led.dao.hibernate.MaratonaHib;
 import com.github.andersori.led.dao.hibernate.TurmaHib;
+import com.github.andersori.led.dao.hibernate.UsuarioHib;
 import com.github.andersori.led.entity.Aluno;
 import com.github.andersori.led.entity.Casa;
 import com.github.andersori.led.entity.Equipe;
 import com.github.andersori.led.entity.Maratona;
 import com.github.andersori.led.entity.Permissao;
 import com.github.andersori.led.entity.Turma;
+import com.github.andersori.led.entity.Usuario;
 
 @Controller("listar")
 @RequestMapping("/listar")
@@ -64,6 +67,52 @@ public class Listar {
 			model.addAttribute("maratonas", listMaratona);
 			model.addAttribute("equipes", listEquipe);
 			return "listar_equipes";
+		}
+		
+		return "redirect:" + request.getContextPath() + "/";
+	}
+	
+	@RequestMapping(value = "/usuarios", method = {RequestMethod.GET, RequestMethod.POST})
+	public String todosUsuarios(Model model, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		UsuarioBean user = (UsuarioBean) session.getAttribute("usuario");
+		
+		if(user.getPermissao() == Permissao.ADM) {
+			UsuarioDAO daoU = new UsuarioHib();
+			
+			List<UsuarioBean> listUsuario = new ArrayList<UsuarioBean>();
+			for(Usuario u : daoU.listAdm()) {
+				UsuarioBean bean = new UsuarioBean();
+				bean.toBean(u);
+				listUsuario.add(bean);
+			}
+			
+			model.addAttribute("usuarios", listUsuario);
+			return "listar_usuarios";
+		}
+		
+		return "redirect:" + request.getContextPath() + "/";
+	}
+	
+	@RequestMapping(value = "/turmas", method = {RequestMethod.GET, RequestMethod.POST})
+	public String todasTurmas(Model model, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		UsuarioBean user = (UsuarioBean) session.getAttribute("usuario");
+		
+		if(user.getPermissao() == Permissao.ADM) {
+			TurmaDAO daoT = new TurmaHib();
+			
+			List<TurmaBean> listTurma = new ArrayList<TurmaBean>();
+			for(Turma t : daoT.list()) {
+				TurmaBean bean = new TurmaBean();
+				bean.toBean(t);
+				listTurma.add(bean);
+			}
+			
+			model.addAttribute("turmas", listTurma);
+			return "listar_turmas";
 		}
 		
 		return "redirect:" + request.getContextPath() + "/";

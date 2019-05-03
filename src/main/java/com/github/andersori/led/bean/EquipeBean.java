@@ -1,24 +1,19 @@
 package com.github.andersori.led.bean;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.github.andersori.led.entity.Casa;
 import com.github.andersori.led.entity.Equipe;
-import com.github.andersori.led.entity.Aluno;
 
 public class EquipeBean implements Bean<Equipe>{
 
     private Long id;
     private UsuarioBean usuario;
-    private List<AlunoBean> alunos;
     private TurmaBean turma;
     private Integer pontos;
     private Casa casa;
     private MaratonaBean maratona;
     
     public EquipeBean() {
-    	alunos = new ArrayList<>();
+    	
     }
 
 	public Long getId() {
@@ -35,14 +30,6 @@ public class EquipeBean implements Bean<Equipe>{
 
 	public void setUsuario(UsuarioBean usuario) {
 		this.usuario = usuario;
-	}
-
-	public List<AlunoBean> getAlunos() {
-		return alunos;
-	}
-
-	public void setAlunos(List<AlunoBean> alunos) {
-		this.alunos = alunos;
 	}
 
 	public TurmaBean getTurma() {
@@ -96,13 +83,7 @@ public class EquipeBean implements Bean<Equipe>{
 			maratonaBean.toBean(entity.getMaratona());
 			setMaratona(maratonaBean);
 			
-			List<AlunoBean> lis = new ArrayList<>();
-			for(Aluno a : entity.getAlunos()) {
-				AlunoBean alunoBean = new AlunoBean();
-				alunoBean.toBean(a);
-				lis.add(alunoBean);
-			}
-			setAlunos(lis);			
+				
 		} 
 		/*else {
 			throw new NullPointerException("Entidade Equipe nula na converção para bean.");
@@ -119,11 +100,6 @@ public class EquipeBean implements Bean<Equipe>{
 		entity.setUsuario(getUsuario().toEntity());
 		entity.setMaratona(getMaratona().toEntity());
 		
-		List<Aluno> lis = new ArrayList<Aluno>();
-		for(AlunoBean a : getAlunos()) {
-			lis.add(a.toEntity());
-		}
-		entity.setAlunos(lis);
 		return entity;
 	}
     	

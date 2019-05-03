@@ -24,8 +24,11 @@
 				<label>Username:</label>
 				<input type="text" name="usernameEquipe" value="${username}">
 				
+				<label>Pontos:</label>
+				<input type="number" min="0" name="pontosEquipe" value="${pontos}">
+				
 				<label>Senha:</label>
-				<input type="password" name="senhaEquipe" value="${senha}">
+				<input type="password" name="senhaEquipe" >
 				
 				<select name="turmaEquipe" required="required">
 					<option value="-1" disabled="disabled">Selecione um Semestre</option>
