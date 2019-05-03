@@ -38,7 +38,6 @@ public class Editar {
 	@RequestMapping(value = "/equipe/{idEquipe}", method = {RequestMethod.GET, RequestMethod.POST})
 	public String editarEquipe(	@PathVariable Long idEquipe,
 								@RequestParam(name="nomeEquipe", required=false) String nome,
-								@RequestParam(name="emailEquipe", required=false) String email,
 								@RequestParam(name="usernameEquipe", required=false) String username,
 								@RequestParam(name="senhaEquipe", required=false) String senha,
 								@RequestParam(name="turmaEquipe", required=false) Long turma,
@@ -71,10 +70,6 @@ public class Editar {
 					if(!username.equals(usuarioEntity.getUsername()))
 					{
 						usuarioEntity.setUsername(username);
-					}
-					
-					if(email != null) {
-						usuarioEntity.setEmail(email);
 					}
 					
 					equipeEntity.setUsuario(usuarioEntity);
@@ -117,7 +112,6 @@ public class Editar {
 			{
 				model.addAttribute("nome", equipeEntity.getUsuario().getNome());
 				model.addAttribute("username", equipeEntity.getUsuario().getUsername());
-				model.addAttribute("email", equipeEntity.getUsuario().getEmail());
 				model.addAttribute("id_turma", equipeEntity.getTurma().getId());
 				
 				if(equipeEntity.getMaratona() != null)
@@ -154,7 +148,7 @@ public class Editar {
 			return "editar_equipe";
 			
 		} else {
-			return "redirect:/";
+			return "redirect:" + request.getContextPath() + "/";
 		}
 	}
 	
@@ -168,7 +162,7 @@ public class Editar {
 		if(user.getPermissao() == Permissao.ADM) {
 			
 		} else {
-			return "redirect:/";
+			return "redirect:" + request.getContextPath() + "/";
 		}
 		
 		return "editar_usuario";
@@ -184,7 +178,7 @@ public class Editar {
 		if(user.getPermissao() == Permissao.ADM) {
 			
 		} else {
-			return "redirect:/";
+			return "redirect:" + request.getContextPath() + "/";
 		}
 		
 		return "editar_aluno";
@@ -200,7 +194,7 @@ public class Editar {
 		if(user.getPermissao() == Permissao.ADM) {
 			
 		} else {
-			return "redirect:/";
+			return "redirect:" + request.getContextPath() + "/";
 		}
 		
 		return "editar_maratona";

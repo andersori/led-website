@@ -57,7 +57,7 @@ public class EscolherCasa {
 		} catch(Exception e) {
 			model.addAttribute("msg", "Equipe não encontrada");
 		}
-		return "redirect:/";
+		return "redirect:" + request.getContextPath() + "/";
 	}
 	
 	@RequestMapping(value = "/{equipeId}", method=RequestMethod.POST)

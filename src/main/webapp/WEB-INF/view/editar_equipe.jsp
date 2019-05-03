@@ -21,9 +21,6 @@
 				<label>Nome:</label>
 				<input type="text" name="nomeEquipe" value="${nome}">
 				
-				<label>Email:</label>
-				<input type="text" name="emailEquipe" value="${email}">
-				
 				<label>Username:</label>
 				<input type="text" name="usernameEquipe" value="${username}">
 				

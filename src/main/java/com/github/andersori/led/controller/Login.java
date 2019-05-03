@@ -41,7 +41,7 @@ public class Login {
 					UsuarioBean userBean = new UsuarioBean();
 					userBean.toBean(userBanco);
 					session.setAttribute("usuario", userBean);
-					return "redirect:/";
+					return "redirect:" + request.getContextPath() + "/";
 				}
 				else {
 					infoCorreta = false;

@@ -91,14 +91,13 @@ public class Cadastrar {
 			
 			return "cadastrar_aluno";
 		} else {
-			return "redirect:/";
+			return "redirect:" + request.getContextPath() + "/";
 		}
 		
 	}
 	
 	@RequestMapping(value = "/equipe", method = {RequestMethod.GET, RequestMethod.POST})
 	public String equipe(	@RequestParam(name="nomeEquipe", required=false) String nome,
-							@RequestParam(name="emailEquipe", required=false) String email,
 							@RequestParam(name="usernameEquipe", required=false) String username,
 							@RequestParam(name="senhaEquipe", required=false) String senha,
 							@RequestParam(name="turmaEquipe", required=false) Long turma,
@@ -117,10 +116,6 @@ public class Cadastrar {
 				usuarioEntity.setPermissao(Permissao.EQUIPE);
 				usuarioEntity.setSenha(BCrypt.hashpw(senha, BCrypt.gensalt()));
 				usuarioEntity.setUsername(username);
-				
-				if(email != null) {
-					usuarioEntity.setEmail(email);
-				}
 				
 				try {				
 					Equipe equipeEntity = new Equipe();
@@ -163,7 +158,7 @@ public class Cadastrar {
 			model.addAttribute("equipes", listEquipe);
 			return "cadastrar_equipe";
 		} else {
-			return "redirect:/";
+			return "redirect:" + request.getContextPath() + "/";
 		}
 		
 	}
@@ -206,7 +201,7 @@ public class Cadastrar {
 			model.addAttribute("semestres", listSemestre);
 			return "cadastrar_maratona";
 		} else {
-			return "redirect:/";
+			return "redirect:" + request.getContextPath() + "/";
 		}
 		
 	}
@@ -251,7 +246,7 @@ public class Cadastrar {
 			model.addAttribute("semestres", listSemestre);
 			return "cadastrar_semestre";
 		} else {
-			return "redirect:/";
+			return "redirect:" + request.getContextPath() + "/";
 		}
 		
 	}
@@ -306,7 +301,7 @@ public class Cadastrar {
 			model.addAttribute("semestres", listSemestre);
 			return "cadastrar_turma";
 		} else {
-			return "redirect:/";
+			return "redirect:" + request.getContextPath() + "/";
 		}
 		
 	}
@@ -315,7 +310,6 @@ public class Cadastrar {
 	public String usuario(	@RequestParam(name="nomeUsuario", required=false) String nome,
 							@RequestParam(name="usernameUsuario", required=false) String username,
 							@RequestParam(name="senhaUsuario", required=false) String senha,
-							@RequestParam(name="emailUsuario", required=false) String email,
 							Model model, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
@@ -328,10 +322,6 @@ public class Cadastrar {
 				usuarioEntity.setPermissao(Permissao.ADM);
 				usuarioEntity.setUsername(username);
 				usuarioEntity.setSenha(BCrypt.hashpw(senha, BCrypt.gensalt()));
-				
-				if(email != null) {
-					usuarioEntity.setEmail(email);
-				}
 				
 				UsuarioDAO dao = new UsuarioHib();
 				
@@ -356,12 +346,11 @@ public class Cadastrar {
 				model.addAttribute("nome", nome);
 				model.addAttribute("username", username);
 				model.addAttribute("senha", senha);
-				model.addAttribute("email", email);
 			}
 			
 			return "cadastrar_usuario";
 		} else {
-			return "redirect:/";
+			return "redirect:" + request.getContextPath() + "/";
 		}
 		
 	}

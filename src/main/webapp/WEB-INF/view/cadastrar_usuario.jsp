@@ -21,9 +21,6 @@
 				<label>*Nome:</label>
 				<input type="text" name="nomeUsuario" required="required" value="${nome}">
 				
-				<label>Email:</label>
-				<input type="text" name="emailUsuario" value="${email}">
-				
 				<label>*Username:</label>
 				<input type="text" name="usernameUsuario" required="required" value="${username}">
 				

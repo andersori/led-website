@@ -8,7 +8,6 @@ public class UsuarioBean implements Bean<Usuario>{
 	private Long id;
     private String username;
     private String nome;
-    private String email;
     private String senha;
     private Permissao permissao;
     private String token;
@@ -39,14 +38,6 @@ public class UsuarioBean implements Bean<Usuario>{
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getSenha() {
@@ -80,7 +71,6 @@ public class UsuarioBean implements Bean<Usuario>{
 			setNome(entity.getNome());
 			setSenha(entity.getSenha());
 			setToken(entity.getToken());
-			setEmail(entity.getEmail());
 			setPermissao(entity.getPermissao());
 			setUsername(entity.getUsername());
 		} 
@@ -96,7 +86,6 @@ public class UsuarioBean implements Bean<Usuario>{
 		entity.setNome(getNome());
 		entity.setSenha(getSenha());
 		entity.setToken(getToken());
-		entity.setEmail(getEmail());
 		entity.setPermissao(getPermissao());
 		entity.setUsername(getUsername());
 		return entity;

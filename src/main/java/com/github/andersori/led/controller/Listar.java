@@ -66,7 +66,7 @@ public class Listar {
 			return "listar_equipes";
 		}
 		
-		return "redirect:/";
+		return "redirect:" + request.getContextPath() + "/";
 	}
 	
 	@RequestMapping(value = "/equipe/{maratonaLis}/{casaLis}", method = {RequestMethod.GET, RequestMethod.POST})
@@ -135,7 +135,7 @@ public class Listar {
 			return "listar_equipes";
 		}
 		
-		return "redirect:/";
+		return "redirect:" + request.getContextPath() + "/";
 	}
 
 	@RequestMapping(value = "/maratona", method = {RequestMethod.GET, RequestMethod.POST})
@@ -157,7 +157,7 @@ public class Listar {
 			return "listar_maratonas";
 		}
 		
-		return "redirect:/";
+		return "redirect:" + request.getContextPath() + "/";
 	}
 
 	@RequestMapping(value = "/alunos", method = {RequestMethod.GET, RequestMethod.POST})
@@ -216,6 +216,6 @@ public class Listar {
 			return "listar_alunos";
 		}
 		
-		return "redirect:/";
+		return "redirect:" + request.getContextPath() + "/";
 	}
 }
