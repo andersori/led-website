@@ -30,7 +30,8 @@ import com.github.andersori.led.entity.Usuario;
 public class AppTest{
     
 	public static void main(String[] args) {
-		usuario();
+		System.out.println((BCrypt.hashpw("1234", BCrypt.gensalt())));
+		//usuario();
 		//aluno();
 		//turma();
 		//equipe();

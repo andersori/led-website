@@ -18,7 +18,7 @@ public class Semestre {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_semestre")
+    @Column(name = "id_semestre", columnDefinition = "serial")
     private Long id;
 	
 	@Column(name = "ano", nullable = false)

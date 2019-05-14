@@ -26,7 +26,7 @@ public class Equipe {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_equipe")
+    @Column(name = "id_equipe", columnDefinition = "serial")
     private Long id;
 
     @OneToOne(targetEntity = Usuario.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)

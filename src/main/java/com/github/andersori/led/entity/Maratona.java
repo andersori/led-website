@@ -18,7 +18,7 @@ public class Maratona {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_maratona")
+    @Column(name = "id_maratona", columnDefinition = "serial")
     private Long id;
 	
 	@ManyToOne(targetEntity = Semestre.class, fetch = FetchType.EAGER)

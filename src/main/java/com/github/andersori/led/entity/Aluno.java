@@ -22,7 +22,7 @@ public class Aluno {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_aluno")
+    @Column(name = "id_aluno", columnDefinition = "serial")
     private Long id;
 
     @Column(name = "nome", nullable = false)
