@@ -58,7 +58,7 @@ public class Hibernate{
             settings.put(Environment.USER, username);
             settings.put(Environment.PASS, password);
             settings.put(Environment.DIALECT, Constante.getDbDialect());
-            settings.put(Environment.SHOW_SQL, "true");
+            settings.put(Environment.SHOW_SQL, "false");
             settings.put(Environment.POOL_SIZE, "10");
             settings.put(Environment.NON_CONTEXTUAL_LOB_CREATION, "true");
 
