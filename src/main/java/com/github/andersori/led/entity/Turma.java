@@ -10,7 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity(name = "Turma")
@@ -21,8 +20,7 @@ import javax.persistence.Table;
 public class Turma {
 	
 	@Id
-	@SequenceGenerator(name="turmaIdSeq", sequenceName="turma_id_turma_seq", allocationSize=1, initialValue = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "turmaIdSeq")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_turma", columnDefinition = "serial")
     private Long id;
 

@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity(name = "Maratona")
@@ -18,8 +17,7 @@ import javax.persistence.Table;
 public class Maratona {
 	
 	@Id
-	@SequenceGenerator(name="maratonaIdSeq", sequenceName="maratona_id_maratona_seq", allocationSize=1, initialValue = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "maratonaIdSeq")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_maratona", columnDefinition = "serial")
     private Long id;
 	

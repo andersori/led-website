@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity(name = "Usuario")
@@ -22,8 +21,7 @@ import javax.persistence.Table;
 public class Usuario {
 	
 	@Id
-	@SequenceGenerator(name="usuarioIdSeq", sequenceName="usuario_id_user_seq", allocationSize=1, initialValue = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usuarioIdSeq")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_user", columnDefinition = "serial")
     private Long id;
 

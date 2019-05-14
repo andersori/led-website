@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity(name = "Semestre")
@@ -18,8 +17,7 @@ import javax.persistence.Table;
 public class Semestre {
 	
 	@Id
-	@SequenceGenerator(name="semestreIdSeq", sequenceName="semestre_id_semestre_seq", allocationSize=1, initialValue = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "semestreIdSeq")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_semestre", columnDefinition = "serial")
     private Long id;
 	
