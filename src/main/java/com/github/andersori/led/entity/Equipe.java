@@ -25,7 +25,7 @@ import javax.persistence.Table;
 public class Equipe {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_equipe", columnDefinition = "serial")
     private Long id;
 

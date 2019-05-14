@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class Maratona {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_maratona", columnDefinition = "serial")
     private Long id;
 	

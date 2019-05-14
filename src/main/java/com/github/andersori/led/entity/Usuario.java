@@ -21,7 +21,7 @@ import javax.persistence.Table;
 public class Usuario {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_user", columnDefinition = "serial")
     private Long id;
 
