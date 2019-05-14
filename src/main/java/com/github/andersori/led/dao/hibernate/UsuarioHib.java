@@ -49,6 +49,7 @@ public class UsuarioHib implements UsuarioDAO{
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Usuario get(String username){
         Session session = Hibernate.getSessionFactory().openSession();
         Transaction t = session.beginTransaction();
@@ -76,6 +77,7 @@ public class UsuarioHib implements UsuarioDAO{
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public boolean validar(String username, String senha){
         Session session = Hibernate.getSessionFactory().openSession();
         Transaction t = session.beginTransaction();
@@ -104,6 +106,7 @@ public class UsuarioHib implements UsuarioDAO{
     }
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public List<Usuario> listAdm() {
 		Session session = Hibernate.getSessionFactory().openSession();
         Transaction t = session.beginTransaction();

@@ -45,6 +45,7 @@ public class SemestreHib implements SemestreDAO{
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public boolean semestreJaCadastrado(Semestre semestre) {
 		Session session = Hibernate.getSessionFactory().openSession();
         Transaction t = session.beginTransaction();

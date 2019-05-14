@@ -85,6 +85,7 @@ public class DAOHibernate<T> implements DAO<T> {
     }
 
     @Override
+    @SuppressWarnings({"deprecation", "unchecked"})
     public List<T> list(T obj) {
         Session session = Hibernate.getSessionFactory().openSession();
         Transaction t = session.beginTransaction();

@@ -3,8 +3,6 @@ package com.github.andersori.led.dao.hibernate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.NoResultException;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -50,6 +48,7 @@ public class AlunoHib implements AlunoDAO{
     }
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public List<Aluno> listByTurma(Turma turma) {
 		Session session = Hibernate.getSessionFactory().openSession();
         Transaction t = session.beginTransaction();
@@ -72,6 +71,7 @@ public class AlunoHib implements AlunoDAO{
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public List<Aluno> listByEquipe(Equipe equipe) {
 		Session session = Hibernate.getSessionFactory().openSession();
         Transaction t = session.beginTransaction();

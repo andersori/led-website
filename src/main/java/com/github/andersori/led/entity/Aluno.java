@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity(name = "Aluno")
@@ -21,7 +22,8 @@ import javax.persistence.Table;
 public class Aluno {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name="alunoIdSeq", sequenceName="aluno_id_aluno_seq", allocationSize=1, initialValue = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "alunoIdSeq")
     @Column(name = "id_aluno", columnDefinition = "serial")
     private Long id;
 

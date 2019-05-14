@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity(name = "Equipe")
@@ -25,7 +26,8 @@ import javax.persistence.Table;
 public class Equipe {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name="equipeIdSeq", sequenceName="equipe_id_equipe_seq", allocationSize=1, initialValue = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "equipeIdSeq")
     @Column(name = "id_equipe", columnDefinition = "serial")
     private Long id;
 

@@ -51,6 +51,7 @@ public class EquipeHib implements EquipeDAO{
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Equipe get(Usuario user) {
         Session session = Hibernate.getSessionFactory().openSession();
         Transaction t = session.beginTransaction();
@@ -78,6 +79,7 @@ public class EquipeHib implements EquipeDAO{
     }
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public List<Equipe> listByMaratona(Maratona maratona) {
 		Session session = Hibernate.getSessionFactory().openSession();
         Transaction t = session.beginTransaction();
@@ -100,6 +102,7 @@ public class EquipeHib implements EquipeDAO{
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public List<Equipe> listByMaratonaCasa(Maratona maratona, Casa casa) {
 		Session session = Hibernate.getSessionFactory().openSession();
         Transaction t = session.beginTransaction();
@@ -123,6 +126,7 @@ public class EquipeHib implements EquipeDAO{
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public List<Equipe> listByCasa(Casa casa) {
 		Session session = Hibernate.getSessionFactory().openSession();
         Transaction t = session.beginTransaction();
