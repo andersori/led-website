@@ -140,13 +140,13 @@
 				let frases_do_chapeu = [
 					['Ahh..', 1400],
 					['Uhmmm...', 1400],
-					['Muito bem..', 1400],
-					['Eu sei muito bem o que fazer com você..', 2200],
-					['Difícil... Muito difícil...', 1800],
-					['Tem muita coragem e uma mente nada mau também...', 2400],
-					['Tem talento, se tem...', 1800],
-					['Não tenho certeza se te coloco na Sonserina...', 2200],
-					['Creio que Lufa Lufa não seria uma má ideia pra você...', 2800]
+					['Muito bem..', 1800],
+					['Eu sei muito bem o que fazer com você..', 2900],
+					['Difícil... Muito difícil...', 2600],
+					['Tem muita coragem e uma mente nada mau também...', 3200],
+					['Tem talento, se tem...', 2600],
+					['Não tenho certeza se te coloco na Sonserina...', 3200],
+					['Creio que Lufa Lufa não seria uma má ideia pra você...', 3400]
 				]
 	
 	
