@@ -37,7 +37,6 @@ public class Aluno {
 
     @ManyToOne(targetEntity = Equipe.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_equipe", nullable = true)
-    @Column(name = "id_equipe", nullable = true)
     private Equipe equipe;
     
     

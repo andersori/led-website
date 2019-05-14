@@ -30,7 +30,6 @@ public class Maratona {
 	
 	@ManyToOne(targetEntity = Equipe.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_vencedor", nullable = true)
-	@Column(name = "id_vencedor", nullable = true)
 	private Equipe vencedor;
 	
 	public Maratona() {
