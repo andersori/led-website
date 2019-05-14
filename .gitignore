@@ -3,4 +3,3 @@ target/
 .vscode/
 .classpath
 .project
-.env
