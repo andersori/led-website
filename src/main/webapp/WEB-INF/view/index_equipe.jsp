@@ -42,7 +42,7 @@
 			<div class="casa-definida">
 				<c:if test="${equipe.casa.id == 1}"><!-- 1 significa GRIFINORIA -->
 					<h1>${usuario.nome}</h1>
-					<h2>Casa: GRIFINORIA</h2>
+					<h2>Casa: GRIFINÓRIA</h2>
 					<div class="img-casa">
 						<img src="${pageContext.request.contextPath}/resources/img/grifinoria.png">
 					</div>
@@ -78,7 +78,7 @@
 				</c:if>
 				<c:if test="${equipe.casa.id == 4}"><!-- 4 significa LUFALUFA -->
 					<h1>${usuario.nome}</h1>
-					<h2>Casa: LUFALUFA</h2>
+					<h2>Casa: LUFA-LUFA</h2>
 					<div class="img-casa">
 						<img src="${pageContext.request.contextPath}/resources/img/lufalufa.png">
 					</div>
