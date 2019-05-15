@@ -1,6 +1,5 @@
 package com.github.andersori.led.config;
 
-import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,7 +9,6 @@ import com.github.andersori.led.entity.Semestre;
 import com.github.andersori.led.entity.Aluno;
 import com.github.andersori.led.entity.Turma;
 import com.github.andersori.led.entity.Usuario;
-import com.github.andersori.led.util.Constante;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -45,21 +43,17 @@ public class Hibernate{
     private static SessionFactory buildSessionFactory(){
     	System.err.println("Conectando ao banco de dados...");
         try{
-        	URI dbUri = new URI(System.getenv("DATABASE_URL"));
-
-            String username = dbUri.getUserInfo().split(":")[0];
-            String password = dbUri.getUserInfo().split(":")[1];
-            String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
-            
+        	
             StandardServiceRegistryBuilder registryBuilder = new StandardServiceRegistryBuilder();
             Map<String, String> settings = new HashMap<String, String>();
-            settings.put(Environment.DRIVER, Constante.getDbDrive());
-            settings.put(Environment.URL, dbUrl);
-            settings.put(Environment.USER, username);
-            settings.put(Environment.PASS, password);
-            settings.put(Environment.DIALECT, Constante.getDbDialect());
+            settings.put(Environment.DRIVER, "org.h2.Driver");
+            settings.put(Environment.URL, "jdbc:h2:mem:test");
+            settings.put(Environment.USER, "sa");
+            settings.put(Environment.PASS, "sa");
+            settings.put(Environment.DIALECT, "org.hibernate.dialect.H2Dialect");
             settings.put(Environment.SHOW_SQL, "false");
             settings.put(Environment.POOL_SIZE, "10");
+            settings.put(Environment.HBM2DDL_AUTO, "create");
             settings.put(Environment.NON_CONTEXTUAL_LOB_CREATION, "true");
 
             registryBuilder.applySettings(settings);

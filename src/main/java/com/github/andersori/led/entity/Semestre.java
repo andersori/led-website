@@ -17,8 +17,8 @@ import javax.persistence.Table;
 public class Semestre {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_semestre", columnDefinition = "serial")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_semestre")
     private Long id;
 	
 	@Column(name = "ano", nullable = false)
