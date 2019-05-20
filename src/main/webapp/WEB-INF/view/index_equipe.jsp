@@ -23,7 +23,7 @@
 					</div>
 					<div class="chapel">
 						<div class="video-chapel">
-							<video src="${pageContext.request.contextPath}/resources/video/mp4.mp4" type="video/mp4" autoplay loop muted></video>
+							<video id="video-chapel-seletor" src="${pageContext.request.contextPath}/resources/video/mp4.mp4" type="video/mp4" autoplay loop muted></video>
 						</div>
 						
 						<c:if test="${not empty msg}">
@@ -98,6 +98,7 @@
 	
 			if(escolha_div){
 				let btn = document.getElementById('btn-escolha');
+				let video = document.getElementById('video-chapel-seletor');
 				btn.setAttribute('disabled','');
 	
 				let frases_boas_inicias = [
@@ -120,6 +121,7 @@
 					}
 					else{
 						btn.removeAttribute('disabled');
+						video.pause();
 					}
 				}
 				timeout(0);//Primeira frase exibida
@@ -134,7 +136,9 @@
 	
 			if(escolha_div){
 				let btn = document.getElementById('btn-escolha');
-				btn.setAttribute('disabled','')
+				let video = document.getElementById('video-chapel-seletor');
+				btn.setAttribute('disabled','');
+				video.play();
 				
 				let dialogo = document.getElementById('dialogo-text');
 				let frases_do_chapeu = [
