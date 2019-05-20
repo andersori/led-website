@@ -21,8 +21,8 @@ import javax.persistence.Table;
 public class Aluno {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_aluno", columnDefinition = "serial")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_aluno")
     private Long id;
 
     @Column(name = "nome", nullable = false)
