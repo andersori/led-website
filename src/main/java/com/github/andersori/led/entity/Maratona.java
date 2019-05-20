@@ -17,8 +17,8 @@ import javax.persistence.Table;
 public class Maratona {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_maratona")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_maratona", columnDefinition = "serial")
     private Long id;
 	
 	@ManyToOne(targetEntity = Semestre.class, fetch = FetchType.EAGER)

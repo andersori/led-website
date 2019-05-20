@@ -25,8 +25,8 @@ import javax.persistence.Table;
 public class Equipe {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_equipe")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_equipe", columnDefinition = "serial")
     private Long id;
 
     @OneToOne(targetEntity = Usuario.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)

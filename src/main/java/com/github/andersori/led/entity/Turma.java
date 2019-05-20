@@ -20,8 +20,8 @@ import javax.persistence.Table;
 public class Turma {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_turma")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_turma", columnDefinition = "serial")
     private Long id;
 
     @Column(name = "nome", nullable = false)
