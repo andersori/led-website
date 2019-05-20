@@ -27,6 +27,7 @@ public class Autenticado implements Filter {
         		req.getRequestURI().endsWith(".css") || 
         		req.getRequestURI().endsWith(".ico") ||
         		req.getRequestURI().endsWith(".png") ||
+        		req.getRequestURI().endsWith(".mp4") ||
         		req.getRequestURI().endsWith(".jpg")) {
         	
         	chain.doFilter(request, response);

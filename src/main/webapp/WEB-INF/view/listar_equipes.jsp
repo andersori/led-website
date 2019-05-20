@@ -18,7 +18,7 @@
 				${msg}
 			</c:if>
 			<form method="POST" id="formPesquisa" action="${pageContext.request.contextPath}/listar/equipe/">
-				<label>*Semestre</label>
+				<label>*Maratona</label>
 				<select name="maratonaLis" required="required">
 					<option value="ALL" selected="selected">TODAS</option>
 					<c:forEach var="maratona" items="${maratonas}">

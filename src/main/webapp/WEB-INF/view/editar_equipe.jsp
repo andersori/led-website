@@ -31,7 +31,7 @@
 				<input type="password" name="senhaEquipe" >
 				
 				<select name="turmaEquipe" required="required">
-					<option value="-1" disabled="disabled">Selecione um Semestre</option>
+					<option value="-1" disabled="disabled">Selecione uma Turma</option>
 					<c:forEach var="turma" items="${turmas}">
 						<option value="${turma.id}" <c:if test="${turma.id eq id_turma}">selected="selected"</c:if>>${turma.nome}::${turma.curso}</option>
 					</c:forEach>

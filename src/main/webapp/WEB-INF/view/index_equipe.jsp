@@ -22,8 +22,8 @@
 						<p>...</p>
 					</div>
 					<div class="chapel">
-						<div class="img-chapel">
-							<img src="${pageContext.request.contextPath}/resources/img/chapel.png">
+						<div class="video-chapel">
+							<video src="${pageContext.request.contextPath}/resources/video/mp4.mp4" type="video/mp4" autoplay loop muted></video>
 						</div>
 						
 						<c:if test="${not empty msg}">

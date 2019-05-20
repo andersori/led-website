@@ -16,7 +16,7 @@
 
 .content-escolha .dialogo{
     position: relative;
-    display:inline-block; /* ou float:left, vai do seu uso */
+    display:inline-block;
     background-color: #000000;
     border-top:10px solid #37688D;
     background-clip: padding-box;
@@ -24,13 +24,14 @@
     border-radius: 5px 5px;
 }
 
-.img-chapel{
+.video-chapel{
     position: relative;
     padding-top: 10px;
 }
 
-.img-chapel img{
-    max-width: 100%;
+.video-chapel video{
+    border: 10px;
+    border-radius: 10px;
 }
 
 .btn-escolha{
