@@ -105,7 +105,8 @@
 					['...', 1000],
 					['Umm!', 1000],
 					['Parece que você não faz parte de uma casa ainda.', 2500],
-					['Vamos não perca tempo, deixe-me te analisar para decidir em qual casa devo te colocar!', 3000]
+					['Vamos não perca tempo, deixe-me te analisar para decidir em qual casa devo te colocar!', 3000],
+					['FIM', 3000]
 				];
 	
 	
@@ -115,7 +116,9 @@
 				function timeout(i) {
 					if(i < frases_boas_inicias.length){						
 						setTimeout(function () {
-							dialogo.textContent = frases_boas_inicias[i][0];
+							if(frases_boas_inicias[i][0] !== 'FIM'){
+								dialogo.textContent = frases_boas_inicias[i][0];	
+							}
 							timeout(++i);
 						}, frases_boas_inicias[i][1]);
 					}
