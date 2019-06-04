@@ -31,4 +31,18 @@ public enum Casa {
 			return INDEFINIDO;
 		}
 	}
+	
+	public static Casa getCasa(Integer id) {
+		if(id == 1) {
+			return GRIFINORIA;
+		} else if(id == 2) {
+			return CORVINAL;
+		} else if(id == 3) {
+			return SONSERINA;
+		} else if(id == 4) {
+			return LUFALUFA;
+		} else {
+			return INDEFINIDO;
+		}
+	}
 }

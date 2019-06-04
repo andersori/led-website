@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.github.andersori.led.util.Constante"%>
+<%@ page import="com.github.andersori.led.entity.Casa"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -42,6 +43,15 @@
 					<c:forEach var="maratona" items="${maratonas}">
 						<option value="${maratona.id}" <c:if test="${maratona.id eq id_maratona}">selected="selected"</c:if>>${maratona.semestre.ano}::${maratona.semestre.numSemestre}</option>
 					</c:forEach>
+				</select>
+    
+				<select name="casaEquipe" required="required">
+					<option value="-1" disabled="disabled">Selecione uma Casa</option>
+					<option value="${Casa.INDEFINIDO.getId()}" <c:if test="${casa eq Casa.INDEFINIDO.getId()}">selected="selected"</c:if> ></option>
+					<option value="${Casa.GRIFINORIA.getId()}" <c:if test="${casa eq Casa.GRIFINORIA.getId()}">selected="selected"</c:if> ></option>
+					<option value="${Casa.CORVINAL.getId()}" <c:if test="${casa eq Casa.CORVINAL.getId()}">selected="selected"</c:if> ></option>
+					<option value="${Casa.SONSERINA.getId()}" <c:if test="${casa eq Casa.SONSERINA.getId()}">selected="selected"</c:if> ></option>
+					<option value="${Casa.LUFALUFA.getId()}" <c:if test="${casa eq Casa.LUFALUFA.getId()}">selected="selected"</c:if> ></option>
 				</select>
 				
 				<input type="submit" value="Editar">

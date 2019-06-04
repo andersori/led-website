@@ -34,6 +34,7 @@ import com.github.andersori.led.dao.hibernate.SemestreHib;
 import com.github.andersori.led.dao.hibernate.TurmaHib;
 import com.github.andersori.led.dao.hibernate.UsuarioHib;
 import com.github.andersori.led.entity.Aluno;
+import com.github.andersori.led.entity.Casa;
 import com.github.andersori.led.entity.Equipe;
 import com.github.andersori.led.entity.Maratona;
 import com.github.andersori.led.entity.Permissao;
@@ -53,6 +54,7 @@ public class Editar {
 								@RequestParam(name="senhaEquipe", required=false) String senha,
 								@RequestParam(name="turmaEquipe", required=false) Long turma,
 								@RequestParam(name="maratonaEquipe", required=false) Long maratona,
+								@RequestParam(name="casaEquipe", required=false) Integer casa,
 								Model model, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
@@ -66,7 +68,9 @@ public class Editar {
 			
 			Equipe equipeEntity = daoE.get(idEquipe);
 			
-			if(nome != null && username != null && senha != null && turma != null && maratona != null && pontos != null) {
+			if(	nome != null && username != null && senha != null && 
+				turma != null && maratona != null && pontos != null &&
+				casa != null) {
 
 				if(equipeEntity != null){
 					
@@ -78,8 +82,7 @@ public class Editar {
 						usuarioEntity.setSenha(BCrypt.hashpw(senha, BCrypt.gensalt()));
 					}
 					
-					if(!username.equals(usuarioEntity.getUsername()))
-					{
+					if(!username.equals(usuarioEntity.getUsername())){
 						usuarioEntity.setUsername(username);
 					}
 					
@@ -87,16 +90,16 @@ public class Editar {
 					equipeEntity.setPontos(pontos);
 					
 					Turma turmaEntity = daoT.get(turma);
-					if(turmaEntity != null)
-					{
+					if(turmaEntity != null){
 						equipeEntity.setTurma(turmaEntity);
 					}
 					
 					Maratona maratonaEntity = daoM.get(maratona);
-					if(maratonaEntity != null)
-					{
+					if(maratonaEntity != null){
 						equipeEntity.setMaratona(maratonaEntity);
 					}
+					
+					equipeEntity.setCasa(Casa.getCasa(casa));
 					
 					try {				
 						daoE.update(equipeEntity);
@@ -120,15 +123,15 @@ public class Editar {
 
 			}
 			
-			if(equipeEntity != null)
-			{
+			if(equipeEntity != null){
+				
 				model.addAttribute("nome", equipeEntity.getUsuario().getNome());
 				model.addAttribute("username", equipeEntity.getUsuario().getUsername());
 				model.addAttribute("id_turma", equipeEntity.getTurma().getId());
 				model.addAttribute("pontos", equipeEntity.getPontos());
+				model.addAttribute("casa", equipeEntity.getCasa().getId());
 				
-				if(equipeEntity.getMaratona() != null)
-				{
+				if(equipeEntity.getMaratona() != null){
 					model.addAttribute("id_maratona", equipeEntity.getMaratona().getId());
 				}
 				
