@@ -47,11 +47,11 @@
     
 				<select name="casaEquipe" required="required">
 					<option value="-1" disabled="disabled">Selecione uma Casa</option>
-					<option value="${Casa.INDEFINIDO.getId()}" <c:if test="${casa eq Casa.INDEFINIDO.getId()}">selected="selected"</c:if> ></option>
-					<option value="${Casa.GRIFINORIA.getId()}" <c:if test="${casa eq Casa.GRIFINORIA.getId()}">selected="selected"</c:if> ></option>
-					<option value="${Casa.CORVINAL.getId()}" <c:if test="${casa eq Casa.CORVINAL.getId()}">selected="selected"</c:if> ></option>
-					<option value="${Casa.SONSERINA.getId()}" <c:if test="${casa eq Casa.SONSERINA.getId()}">selected="selected"</c:if> ></option>
-					<option value="${Casa.LUFALUFA.getId()}" <c:if test="${casa eq Casa.LUFALUFA.getId()}">selected="selected"</c:if> ></option>
+					<option value="${Casa.INDEFINIDO.getId()}" <c:if test="${casa eq Casa.INDEFINIDO.getId()}">selected="selected"</c:if> >Indefinido</option>
+					<option value="${Casa.GRIFINORIA.getId()}" <c:if test="${casa eq Casa.GRIFINORIA.getId()}">selected="selected"</c:if> >Grifinória</option>
+					<option value="${Casa.CORVINAL.getId()}" <c:if test="${casa eq Casa.CORVINAL.getId()}">selected="selected"</c:if> >Corvinal</option>
+					<option value="${Casa.SONSERINA.getId()}" <c:if test="${casa eq Casa.SONSERINA.getId()}">selected="selected"</c:if> >Sonserina</option>
+					<option value="${Casa.LUFALUFA.getId()}" <c:if test="${casa eq Casa.LUFALUFA.getId()}">selected="selected"</c:if> >LufaLufa</option>
 				</select>
 				
 				<input type="submit" value="Editar">
