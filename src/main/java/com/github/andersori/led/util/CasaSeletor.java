@@ -25,7 +25,6 @@ public class CasaSeletor {
 			int qtdCorvinal = 0;
 			int qtdGrifinoria = 0;
 			int qtdSonserina = 0;
-			int qtdIndefinido = 0;
 			
 			List<Equipe> equipesMaratona = daoEquipe.listByMaratona(equipe.getMaratona());
 			
@@ -38,41 +37,29 @@ public class CasaSeletor {
 					qtdLufalufa++;
 				} else if(e.getCasa() == Casa.SONSERINA) {
 					qtdSonserina++;
-				} else {
-					qtdIndefinido++;
 				}
 			}
 			
 			int maxPorCasa = (int) Math.floor(equipesMaratona.size() / 4);
-			int restantes = (int) Math.floor(qtdIndefinido / 4);
 			
 			Casa casaEscolhida = Casa.INDEFINIDO;
-			if(restantes > 0) {
-				List<Casa> casas = new ArrayList<Casa>();
+			
+			List<Casa> casas = new ArrayList<Casa>();
+			if(qtdCorvinal < maxPorCasa+1) {
 				casas.add(Casa.CORVINAL);
-				casas.add(Casa.GRIFINORIA);
-				casas.add(Casa.LUFALUFA);
-				casas.add(Casa.SONSERINA);
-				
-				Random rand = new Random();
-				casaEscolhida = casas.get(rand.nextInt(casas.size()));
-			} else {
-				List<Casa> casas = new ArrayList<Casa>();
-				if(qtdCorvinal < maxPorCasa+1) {
-					casas.add(Casa.CORVINAL);
-				}
-				if(qtdGrifinoria < maxPorCasa+1) {
-					casas.add(Casa.GRIFINORIA);
-				}
-				if(qtdLufalufa < maxPorCasa+1) {
-					casas.add(Casa.LUFALUFA);
-				}
-				if(qtdSonserina < maxPorCasa+1) {
-					casas.add(Casa.SONSERINA);
-				}
-				Random rand = new Random();
-				casaEscolhida = casas.get(rand.nextInt(casas.size()));
 			}
+			if(qtdGrifinoria < maxPorCasa+1) {
+				casas.add(Casa.GRIFINORIA);
+			}
+			if(qtdLufalufa < maxPorCasa+1) {
+				casas.add(Casa.LUFALUFA);
+			}
+			if(qtdSonserina < maxPorCasa+1) {
+				casas.add(Casa.SONSERINA);
+			}
+			Random rand = new Random();
+			casaEscolhida = casas.get(rand.nextInt(casas.size()));
+			
 			
 			equipe.setCasa(casaEscolhida);
 			daoEquipe.update(equipe);
