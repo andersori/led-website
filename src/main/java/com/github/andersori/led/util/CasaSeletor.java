@@ -41,25 +41,48 @@ public class CasaSeletor {
 			}
 			
 			int maxPorCasa = (int) Math.floor(equipesMaratona.size() / 4);
+			double equipesExtras = (((float)equipesMaratona.size()/4) - Math.floor((float)equipesMaratona.size()/4)) * 4;
 			
 			Casa casaEscolhida = Casa.INDEFINIDO;
 			
 			List<Casa> casas = new ArrayList<Casa>();
-			if(qtdCorvinal < maxPorCasa+1) {
+			if(qtdCorvinal < maxPorCasa) {
 				casas.add(Casa.CORVINAL);
 			}
-			if(qtdGrifinoria < maxPorCasa+1) {
+			if(qtdGrifinoria < maxPorCasa) {
 				casas.add(Casa.GRIFINORIA);
 			}
-			if(qtdLufalufa < maxPorCasa+1) {
+			if(qtdLufalufa < maxPorCasa) {
 				casas.add(Casa.LUFALUFA);
 			}
-			if(qtdSonserina < maxPorCasa+1) {
+			if(qtdSonserina < maxPorCasa) {
 				casas.add(Casa.SONSERINA);
 			}
-			Random rand = new Random();
-			casaEscolhida = casas.get(rand.nextInt(casas.size()));
 			
+			if(casas.size() == 0){
+				
+				if(equipesExtras != 0) {
+					if(qtdCorvinal <= maxPorCasa) {
+						casas.add(Casa.CORVINAL);
+					}
+					if(qtdGrifinoria <= maxPorCasa) {
+						casas.add(Casa.GRIFINORIA);
+					}
+					if(qtdLufalufa <= maxPorCasa) {
+						casas.add(Casa.LUFALUFA);
+					}
+					if(qtdSonserina <= maxPorCasa) {
+						casas.add(Casa.SONSERINA);
+					}
+					
+					Random rand = new Random();
+					casaEscolhida = casas.get(rand.nextInt(casas.size()));
+				}
+				
+			} else {
+				Random rand = new Random();
+				casaEscolhida = casas.get(rand.nextInt(casas.size()));
+			}
 			
 			equipe.setCasa(casaEscolhida);
 			daoEquipe.update(equipe);
